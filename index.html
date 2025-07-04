@@ -1,55 +1,149 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LORE SERVIÇOS</title>
+  <title>Lore Serviços</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif;}
-    body {background: #fff; color: #333;}
-    header {background: #003366; color: white; padding: 20px; text-align: center;}
-    nav {background: #002244; padding: 10px; text-align: center;}
-    nav a {color: white; margin: 0 15px; text-decoration: none; font-weight: bold;}
-    .banner {text-align: center; padding: 0; background-color: #004080; display: flex; justify-content: center; align-items: center;}
-    .banner img {max-width: 100%; max-height: 400px; object-fit: contain;}
-    .section {padding: 60px 20px; max-width: 1000px; margin: auto;}
-    .section h2 {text-align: center; margin-bottom: 30px; color: #003366;}
-    .services, .portfolio {display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px;}
-    .service, .portfolio-item {flex: 1 1 200px; background: #f2f2f2; padding: 20px; border-radius: 10px; text-align: center;}
-    .portfolio {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
 
-.portfolio-item {
-  flex: 0 1 280px;
-  max-width: 280px;
-  background: #f2f2f2;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+    body {
+      background: #fff;
+      color: #333;
+    }
 
-.portfolio-item img {
-  width: 100%;
-  height: 180px;
-  object-fit: contain;
-  display: center;
-  margin: 0 auto;
-  border-radius: 8px;
-  background-color: white; /* opcional: para fundo neutro em torno da imagem */
+    header {
+      background: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-}
+    nav {
+      background: #002244;
+      padding: 10px;
+      text-align: center;
+    }
 
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-    .contact {text-align: center; padding: 30px;}
-    .contact a {display: inline-block; margin: 10px; padding: 12px 20px; background: #003366; color: white; text-decoration: none; border-radius: 5px;}
-    footer {background: #002244; color: white; text-align: center; padding: 20px; margin-top: 40px;}
+    .banner {
+      text-align: center;
+      padding: 0;
+      background-color: #004080;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .banner img {
+      max-width: 100%;
+      height: 450px;
+      object-fit: contain;
+    }
+
+    .section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #003366;
+    }
+
+    .services, .portfolio {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    .service, .portfolio-item {
+      flex: 1 1 200px;
+      background: #f2f2f2;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .portfolio-item {
+      max-width: 280px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      margin: 0 auto;
+      border-radius: 8px;
+      background-color: white;
+    }
+
+    .contact {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .contact a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      background: #003366;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    footer {
+      background: #002244;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    /* RESPONSIVIDADE PARA CELULAR */
+    @media (max-width: 768px) {
+      .services, .portfolio {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .service, .portfolio-item {
+        width: 90%;
+        max-width: 100%;
+      }
+
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+
+      .section h2, p {
+        text-align: center;
+        font-size: 16px;
+      }
+
+      .contact a {
+        width: 80%;
+        max-width: 300px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -65,7 +159,7 @@
   </nav>
 
   <section class="banner">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgMOtXjiRS83KRtSRZ2SOEKdQl1uTyCJ4ue6hkjQW3Vj97yJJQpWsN_Ph2fbVxLjFb_TeV_JfQ7s91hdRC7AFcOJjlZOe69LOF816ueWklWq-nqApKwsZP0e8o_mZ2xYV7qUZgeGj_AuyfqHT7FHmhZSezecK7Na_i56zOkwt47ypQkSTlEnkYmj0_aA509/s1920/SLIDE%20APRESENTA%C3%87%C3%83O%20COFFEE%20SITE.odp%20(2).gif" alt="Banner Coffee Break">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgH3Ue5No6TLJiLVfUg74al6bVSLnBP6E6R8tYD-Bxq3uE3-0HpZrsfujdS_hOTHWbL5AEOJDM44DOh0QHSPArCcP_ntUSc09wXNB9MBeF6RceUbmRwxPH9IfRb579SKJlUxn8pqM115ILJvmLr8H0sUIuNzZ68iEd76iejTST_qODc6cozoedK6i5dX9tc/s1920/Eventos%20corporativos%20(1).gif" alt="Banner Coffee Break">
   </section>
 
   <section id="quem-somos" class="section">
@@ -106,13 +200,14 @@
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgD7ErRey2u-Ft4OU3woDKwCS2Ks4CZWAe7k9cx5KKVrfKjG16soRD04sgtc4HuToIi4hYs30nMv5hOnaFvQbKjDfobhcGD74-rV5lvkzcJq4TpC8BOIJQzjDhoBHJN9FupNj4WDwF5Hoja8i51QfYFst062f_ynEq28wDMR9hjiAFk2JjuLYQQxUcIhhga/s1920/C%C3%B3pia%20de%20Design%20sem%20nome%20(5).gif">
         <p>Coffee break</p>
       </div>
-<div class="portfolio-item">
+      <div class="portfolio-item">
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjNExja4zNR92e2ZoiBfhH3iLzawfmA2mhc4InRbb5CCPX3AK8qweYsAYqTr3NQrkBNqlpnyDTM76XJDfSPOO2zy3bCln57BHAlGOAAT52xhOHla5luLc3zRcdw8w-BM3NeHga_UUuO-nptcLnr_aeHmGhBUHewmnj4YJAHEKPFoN1FNANuqFYRZj4l7gOQ/s1920/kit%20lanche%20(2).gif" alt="Evento 2">
         <p>Kit Lanche</p>
-</div>
+      </div>
       <div class="portfolio-item">
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhrKeeAkBHH8a8v_3XDyj2zUeKGjul8hJaPaNgIAtmTeCZM5FhiHzycj46rpVgxrzAB9ZhSRQbrGXviTCy7qbGaOHBQ0EKP-T3QeDzvSZTDqDxIpQucd1Dy8130U4WuDSy8FojgnmRvE_Gx9dWPHy_yTtZArRW-dm5LXa7ZzXEM2qUv85X3-npkUl_EK-kD/s1920/clientes%20(1).gif" alt="Evento 2">
         <p>Clientes</p>
+      </div>
     </div>
   </section>
 
@@ -125,8 +220,8 @@
 
   <footer>
     <p>LORE SERVIÇOS – Rua Madagascar, 537 – Santana de Parnaíba – SP</p>
-    <p>CNPJ:50.743.220.0001-83</p>
-    <p>Email para Orçamentos:loreservicos@gmail.com</p>
+    <p>CNPJ: 50.743.220.0001-83</p>
+    <p>Email para Orçamentos: loreservicos@gmail.com</p>
     <p>&copy; 2023 Todos os direitos reservados</p>
   </footer>
 </body>
