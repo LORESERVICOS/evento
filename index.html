@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lore Serviços</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eventos Corporativos | Lore Serviços</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
     * {
       margin: 0;
@@ -18,11 +18,101 @@
       color: #333;
     }
 
-    header {
-      background: #003366;
-      color: white;
-      padding: 20px;
+    /* TOPO */
+    .topo {
+      position: relative;
+      width: 100%;
+      background-color: #1d3f5f;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      overflow: hidden;
+    }
+
+    .faixa {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 10%;
+      transform: skewX(-20deg);
+      z-index: 0;
+    }
+
+    .faixa-branca {
+      background-color: white;
+      right: 10%;
+    }
+
+    .faixa-azulceu {
+      background-color: #3b74a8;
+      right: 0%;
+    }
+
+    .slogan-topo {
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      color: black;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      z-index: 2;
+      text-align: right;
+    }
+
+    .conteudo {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1100px;
+      flex-direction: column;
       text-align: center;
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 5cm;
+      justify-content: center;
+    }
+
+    .logo {
+      width: 100%;
+      max-width: 350px;
+      height: center;
+    }
+
+    @media (max-width: 600px) {
+      .conteudo {
+        padding: 0 10px;
+      }
+
+      .logo {
+        max-width: 320px;
+height: center;
+      }
+
+      .slogan-topo {
+        font-size: 16px;
+        top: 50px;
+        right: 30px;
+      }
+
+      .faixa {
+        width: 22%;
+      }
+
+      .faixa-branca {
+        right: 22%;
+      }
+
+      .faixa-azulceu {
+        right: 0%;
+      }
     }
 
     nav {
@@ -49,7 +139,7 @@
 
     .banner img {
       max-width: 100%;
-      height: 450px;
+      max-height: 400px;
       object-fit: contain;
     }
 
@@ -80,18 +170,9 @@
       text-align: center;
     }
 
-    .portfolio-item {
-      max-width: 280px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .portfolio-item img {
+    .portfolio img {
       width: 100%;
-      height: 180px;
-      object-fit: contain;
-      margin: 0 auto;
       border-radius: 8px;
-      background-color: white;
     }
 
     .contact {
@@ -116,40 +197,24 @@
       padding: 20px;
       margin-top: 40px;
     }
-
-    /* RESPONSIVIDADE PARA CELULAR */
-    @media (max-width: 768px) {
-      .services, .portfolio {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .service, .portfolio-item {
-        width: 90%;
-        max-width: 100%;
-      }
-
-      nav a {
-        display: block;
-        margin: 10px 0;
-      }
-
-      .section h2, p {
-        text-align: center;
-        font-size: 16px;
-      }
-
-      .contact a {
-        width: 80%;
-        max-width: 300px;
-      }
-    }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjiHVKPpMdnqdCbNFywnVzSb2zLfmrSCCGnoihOnhMsf-aFyfB8FBlfU5EqNLvCxnL8dFwd1CWb3uu3z1KS_LU59sYWcAvjRGRGGvN6kldI_82TE4NfKELEe4E9jz84RNrKjIOGdGOxvhEJxPs6guITmHM6xkQa99WZ_Uto8TVdxBHDDpqI4JYrJ3VR5bNu/s1366/Home.jpg">
-  </header>
+
+  <!-- TOPO -->
+  <div class="topo">
+    <div class="faixa faixa-branca"></div>
+    <div class="faixa faixa-azulceu"></div>
+
+    <!-- SLOGAN NO TOPO DIREITO -->
+    <div class="slogan-topo">Experiência. Compromisso. Valor.</div>
+
+    <div class="conteudo">
+      <div class="logo-container">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRhIpl3j-MI2sDg-asUK8RoLKgTg0JbEYIm5ptemzwKMr4OZAJ7Qpsu3rZZMriVUun42v7wN6iIqKmlMBU73vnIB_8rEoQQGRPKBfrPo0Tqz5OcRwwDmEGsL84avGefKKs9bAtohPO5EJ4Hmj8d86OPW9oXU0HqMw4j7TUBIEIfaJpbRWYKW5pZqL4PhD5/s500/logotipo%20lore%20azul.png" alt="Logotipo Lore" class="logo"/>
+      </div>
+    </div>
+  </div>
 
   <nav>
     <a href="#servicos">Serviços</a>
@@ -159,7 +224,7 @@
   </nav>
 
   <section class="banner">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgH3Ue5No6TLJiLVfUg74al6bVSLnBP6E6R8tYD-Bxq3uE3-0HpZrsfujdS_hOTHWbL5AEOJDM44DOh0QHSPArCcP_ntUSc09wXNB9MBeF6RceUbmRwxPH9IfRb579SKJlUxn8pqM115ILJvmLr8H0sUIuNzZ68iEd76iejTST_qODc6cozoedK6i5dX9tc/s1920/Eventos%20corporativos%20(1).gif" alt="Banner Coffee Break">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgH3Ue5No6TLJiLVfUg74al6bVSLnBP6E6R8tYD-Bxq3uE3-0HpZrsfujdS_hOTHWbL5AEOJDM44DOh0QHSPArCcP_ntUSc09wXNB9MBeF6RceUbmRwxPH9IfRb579SKJlUxn8pqM115ILJvmLr8H0sUIuNzZ68iEd76iejTST_qODc6cozoedK6i5dX9tc/s1920/Eventos%20corporativos%20(1).gif" alt="Banner Coffee Break"/>
   </section>
 
   <section id="quem-somos" class="section">
@@ -198,14 +263,14 @@
     <div class="portfolio">
       <div class="portfolio-item">
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgD7ErRey2u-Ft4OU3woDKwCS2Ks4CZWAe7k9cx5KKVrfKjG16soRD04sgtc4HuToIi4hYs30nMv5hOnaFvQbKjDfobhcGD74-rV5lvkzcJq4TpC8BOIJQzjDhoBHJN9FupNj4WDwF5Hoja8i51QfYFst062f_ynEq28wDMR9hjiAFk2JjuLYQQxUcIhhga/s1920/C%C3%B3pia%20de%20Design%20sem%20nome%20(5).gif">
-        <p>Coffee break</p>
+        <p>Coffee break/Brunch/Buffet</p>
       </div>
       <div class="portfolio-item">
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjNExja4zNR92e2ZoiBfhH3iLzawfmA2mhc4InRbb5CCPX3AK8qweYsAYqTr3NQrkBNqlpnyDTM76XJDfSPOO2zy3bCln57BHAlGOAAT52xhOHla5luLc3zRcdw8w-BM3NeHga_UUuO-nptcLnr_aeHmGhBUHewmnj4YJAHEKPFoN1FNANuqFYRZj4l7gOQ/s1920/kit%20lanche%20(2).gif" alt="Evento 2">
         <p>Kit Lanche</p>
       </div>
       <div class="portfolio-item">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhrKeeAkBHH8a8v_3XDyj2zUeKGjul8hJaPaNgIAtmTeCZM5FhiHzycj46rpVgxrzAB9ZhSRQbrGXviTCy7qbGaOHBQ0EKP-T3QeDzvSZTDqDxIpQucd1Dy8130U4WuDSy8FojgnmRvE_Gx9dWPHy_yTtZArRW-dm5LXa7ZzXEM2qUv85X3-npkUl_EK-kD/s1920/clientes%20(1).gif" alt="Evento 2">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhrKeeAkBHH8a8v_3XDyj2zUeKGjul8hJaPaNgIAtmTeCZM5FhiHzycj46rpVgxrzAB9ZhSRQbrGXviTCy7qbGaOHBQ0EKP-T3QeDzvSZTDqDxIpQucd1Dy8130U4WuDSy8FojgnmRvE_Gx9dWPHy_yTtZArRW-dm5LXa7ZzXEM2qUv85X3-npkUl_EK-kD/s1920/clientes%20(1).gif" alt="Evento 3">
         <p>Clientes</p>
       </div>
     </div>
