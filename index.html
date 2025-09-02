@@ -83,7 +83,6 @@
     .logo {
       width: 100%;
       max-width: 350px;
-      height: center;
     }
 
     @media (max-width: 600px) {
@@ -93,7 +92,6 @@
 
       .logo {
         max-width: 320px;
-height: center;
       }
 
       .slogan-topo {
@@ -197,6 +195,38 @@ height: center;
       padding: 20px;
       margin-top: 40px;
     }
+
+    /* POPUP CARDÁPIO */
+    #popup {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      width: 280px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0px 3px 12px rgba(0,0,0,0.25);
+      z-index: 9999;
+      background: white;
+    }
+
+    #popup img {
+      width: 100%;
+      display: block;
+    }
+
+    #fecharPopup {
+      position: absolute;
+      top: 2px;
+      right: 6px;
+      font-size: 14px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -230,7 +260,7 @@ height: center;
   <section id="quem-somos" class="section">
     <h2>Quem Somos</h2>
     <p>A Lore Serviços é especializada em soluções completas para eventos corporativos, coffee breaks, buffet e logística para ações públicas. Atuamos com qualidade, compromisso e valor em cada entrega, garantindo satisfação e pontualidade.🍃 Sabores Direto da Fazenda
-Ingredientes frescos, receitas artesanais e opções para todos os gostos — incluindo veganos🌱 e vegetarianos 🥗.</p>
+Ingredientes frescos, receitas artesanais e opções para todos os gostos — incluindo veganos🌱 e vegetarianos 🥗.</p>
   </section>
 
   <section id="servicos" class="section">
@@ -290,5 +320,59 @@ Ingredientes frescos, receitas artesanais e opções para todos os gostos —�
     <p>Email para Orçamentos: loreservicos@gmail.com</p>
     <p>&copy; 2023 Todos os direitos reservados</p>
   </footer>
+
+    <!-- POPUP CARDÁPIO -->
+  <div id="popup">
+    <button id="fecharPopup">&times;</button>
+    <img id="carouselImage" 
+      src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyD7e9P6Zer7-ls0gGuWa-uHc3YcplKPISUlsdxca67ZnuIUhO8PT7WWxR03_fJ2QXjAEU1utKJCJWJFHTpS4yBV3fMzerqnCSaNk20biDPHxDD3gxSnzsE0pAA5xog8n3nRXArXUcpFbyU-SI0k74hK2WF8VxaPkPenHnr4ZE7Im_Z-7Z644NWM5q5E1O/s1920/1.png" 
+      alt="Cardápio">
+  </div>
+
+  <script>
+    // Lista de imagens do cardápio
+    const imagens = [
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyD7e9P6Zer7-ls0gGuWa-uHc3YcplKPISUlsdxca67ZnuIUhO8PT7WWxR03_fJ2QXjAEU1utKJCJWJFHTpS4yBV3fMzerqnCSaNk20biDPHxDD3gxSnzsE0pAA5xog8n3nRXArXUcpFbyU-SI0k74hK2WF8VxaPkPenHnr4ZE7Im_Z-7Z644NWM5q5E1O/s1920/1.png",
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZBs_hMn3GyfSju6lTadcRQmHv7y0lQYLMZjSzw-c6W1wFNe67o4n9RmBiH3xmdH0HZqYVK27WwZpFQFtvAB40WiAx-s56_ADWPZ4u27g5iA5HbOub3L2g7XN311RuLF4YYN2RluvzdXkWAzANHH_MYM4eKTmQXRLiJqdF22StrZgvO4FQ_0sLGSrG1WqX/s1920/2.png",
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYZ0kTiosqrwBQP8kodexIksI19OJI2Dq6M7FhtwNI4xXrlQepfPyzOdchEEGzKivawbaAuXy973m8FspzjUEheNiDDI07S1AbQzVYROGIqGvxI83lUvNDsqe0YMNbAPJtTWm20zJKsIbiGQqTdOrWq2U7S-mWNHUpxMghmuyZXqHhQOTduDcFo_7kvUCU/s1920/3.png",
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7EXMSg4v8levlEp8AzoUYqGUHa2weQUf63gue8xuVyiNuH9ByQNxljbWfTTdVwOrPPKY_zw0V8uIL_4i0unGPzg_J39WtlCf-9ekT6SyBBWXkxo5bElqoWHpirL1p1ax8OSx1YMMielrugEQDMjMIA4Cu2LcJd7kWEsJ5JAwl0xnrpe22HqijrCe_PIoS/s1920/4.png",
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiX-znPLHi6IJdt1p5ZrWsiO2478AHj0kyrXcdMxvthNxtBiKWWWqORpVBglKcML9gae7QWPZrRugY7-M3jCfnl6W4kgti9sL8hLwfCOCmdzw1RWKCf_J1iZf32BDzd8oGRS8bJBYQ-JmDTl-xS5cCpmCjJ2HCvVEhLBx4wZH80o3_m8a93wwAjA62k5ybD/s1920/5.png",
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEialAliuOd-A0KssVD1C5PTcojfQp05sHE9zhs7pwN94EpeydbF8J07_v9aVhXDE2lBySc6xVfaQ7r9BSFby5sOplYdAt3n0WuqosA6CNLfykQbzC9ezktfxhF33b0ZDjU_r5tFQMQ-9r09ra8XKknsUuFGe9aWLyhyj0cDPRA2oCVuIQw96PwbRjSgPEw/s1920/6.png",
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiTEXDZ0QUHWohJz-mkz6CjHzJAyF7sMQ7ywJ70wvoFwbPHdRNz8qvS4am4U4OAzWPLusdrS0r-vjIl9qzvtxSdN7t08PmqAWhuitAswgu4zvQnCgjQVCavQ4lF7EV6HrF1PMpy3n2DBPFxGBtBFX2dDWDkT7o_V94ca9nsOuHplKQUcvL-p07zlWu2MSSm/s1920/7.png"
+    ];
+
+    let index = 0;
+    const imgElement = document.getElementById("carouselImage");
+
+    // Troca de imagem a cada 3 segundos
+    setInterval(() => {
+      index = (index + 1) % imagens.length;
+      imgElement.src = imagens[index];
+    }, 3000);
+
+    // Botão de fechar popup
+    document.getElementById("fecharPopup").addEventListener("click", () => {
+      document.getElementById("popup").style.display = "none";
+    });
+  </script>
+
+  <style>
+    /* garantir que o botão fique na frente */
+    #fecharPopup {
+      z-index: 10000;
+    }
+  </style>
+
 </body>
 </html>
+
+
+    // Botão de fechar popup
+    document.getElementById("fecharPopup").addEventListener("click", () => {
+      document.getElementById("popup").style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
+
