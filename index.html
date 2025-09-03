@@ -196,13 +196,13 @@
       margin-top: 40px;
     }
 
-    /* POPUP CARDÁPIO */
+        /* POPUP CARDÁPIO */
     #popup {
       position: fixed;
       bottom: 15px;
       right: 15px;
       width: 280px;
-      max-width: 90%;
+      max-width: 90%;  /* 🔹 agora adapta ao tamanho da tela */
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0px 3px 12px rgba(0,0,0,0.25);
@@ -212,7 +212,7 @@
 
     #popup img {
       width: 100%;
-      height: auto;
+      height: auto; /* 🔹 mantém proporção */
       display: block;
     }
 
@@ -231,11 +231,12 @@
       z-index: 10000;
     }
 
+    /* 🔹 Responsivo para celular */
     @media (max-width: 480px) {
       #popup {
         bottom: 10px;
         right: 10px;
-        width: 90%;
+        width: 90%;     /* quase toda a largura da tela */
         max-width: 320px;
       }
 
@@ -245,6 +246,7 @@
         height: 32px;
       }
     }
+
   </style>
 </head>
 <body>
@@ -339,7 +341,7 @@ Ingredientes frescos, receitas artesanais e opções para todos os gostos — in
     <p>&copy; 2023 Todos os direitos reservados</p>
   </footer>
 
-  <!-- POPUP CARDÁPIO -->
+    <!-- POPUP CARDÁPIO -->
   <div id="popup">
     <button id="fecharPopup">&times;</button>
     <img id="carouselImage" 
@@ -355,20 +357,32 @@ Ingredientes frescos, receitas artesanais e opções para todos os gostos — in
       "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYZ0kTiosqrwBQP8kodexIksI19OJI2Dq6M7FhtwNI4xXrlQepfPyzOdchEEGzKivawbaAuXy973m8FspzjUEheNiDDI07S1AbQzVYROGIqGvxI83lUvNDsqe0YMNbAPJtTWm20zJKsIbiGQqTdOrWq2U7S-mWNHUpxMghmuyZXqHhQOTduDcFo_7kvUCU/s1920/3.png",
       "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7EXMSg4v8levlEp8AzoUYqGUHa2weQUf63gue8xuVyiNuH9ByQNxljbWfTTdVwOrPPKY_zw0V8uIL_4i0unGPzg_J39WtlCf-9ekT6SyBBWXkxo5bElqoWHpirL1p1ax8OSx1YMMielrugEQDMjMIA4Cu2LcJd7kWEsJ5JAwl0xnrpe22HqijrCe_PIoS/s1920/4.png",
       "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiX-znPLHi6IJdt1p5ZrWsiO2478AHj0kyrXcdMxvthNxtBiKWWWqORpVBglKcML9gae7QWPZrRugY7-M3jCfnl6W4kgti9sL8hLwfCOCmdzw1RWKCf_J1iZf32BDzd8oGRS8bJBYQ-JmDTl-xS5cCpmCjJ2HCvVEhLBx4wZH80o3_m8a93wwAjA62k5ybD/s1920/5.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEialAliuOd-A0KssVD1C5PTcojfQp05sHE9zhs7pwN94EpeydbF8HK6vn1oXBzHlIl9i2zmLQnTOHYeSApdPXSLXYXSsR9-0XnrQanfj3RpzNwOezOkjByVV8tAxBlkbeBqcLnBmwsMo56ttD_sGCPhrtAgkgth7q-fOQWNYV_WhbUUbAtsUa5-TyMgWB0V/s1920/6.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiTEXDZ0QUHWohJz-mkz6CjHzJAyF7sMQ7ywJ70wvoFwbPHdRNz8qvS4am4U4OAzWPLusdrS0r-vjIl9qzvtxSdN7t08PmqAWhuitAswgu4zvQnCgjQVCavQ4lF7EV6HrF1PMpy3n2DBPFxGBtBFX2dDWDkT7o_V94ca9nsOuHplKQUcvL-p07zlWu2MSSm/s1920/7.png"
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEialAliuOd-A0KssVD1C5PTcojfQp05sHE9zhs7pwN94EpeydbF8HK6vn1oXBzHlIl9i2zmLQnTOHYeSApdPXSLXYXSsR9-0XnrQanfj3RpzNwOezOkjByVV8tAxBlkbeBqcLnBmwsMo56ttD_sGCPhrtAgkgth7q-fOQWNYV_WhbUUbAtsUa5-TyMgWB0V/s1920/6.png",
+"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiTEXDZ0QUHWohJz-mkz6CjHzJAyF7sMQ7ywJ70wvoFwbPHdRNz8qvS4am4U4OAzWPLusdrS0r-vjIl9qzvtxSdN7t08PmqAWhuitAswgu4zvQnCgjQVCavQ4lF7EV6HrF1PMpy3n2DBPFxGBtBFX2dDWDkT7o_V94ca9nsOuHplKQUcvL-p07zlWu2MSSm/s1920/7.png"
     ];
 
-    let indice = 0;
-    const imgEl = document.getElementById("carouselImage");
-    setInterval(() => {
-      indice = (indice + 1) % imagens.length;
-      imgEl.src = imagens[indice];
-    }, 4000);
+    let index = 0;
+    const imgElement = document.getElementById("carouselImage");
 
+    // Troca de imagem a cada 3 segundos
+    setInterval(() => {
+      index = (index + 1) % imagens.length;
+      imgElement.src = imagens[index];
+    }, 3000);
+
+    // Botão de fechar popup
     document.getElementById("fecharPopup").addEventListener("click", () => {
       document.getElementById("popup").style.display = "none";
     });
   </script>
+
+  <style>
+    /* garantir que o botão fique na frente */
+    #fecharPopup {
+      z-index: 10000;
+    }
+  </style>
+
 </body>
 </html>
+
