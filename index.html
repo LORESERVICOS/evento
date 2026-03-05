@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Eventos Corporativos | Lore Serviços</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+
   <style>
     * {
       margin: 0;
@@ -13,13 +14,10 @@
       font-family: 'Montserrat', sans-serif;
     }
 
-    body {
-      background: #fff;
-      color: #333;
-    }
+    body { background: #fff; color: #333; }
 
     /* TOPO */
-    .topo {
+    .topo{
       position: relative;
       width: 100%;
       background-color: #1d3f5f;
@@ -29,7 +27,7 @@
       overflow: hidden;
     }
 
-    .faixa {
+    .faixa{
       position: absolute;
       top: 0;
       bottom: 0;
@@ -38,17 +36,10 @@
       z-index: 0;
     }
 
-    .faixa-branca {
-      background-color: white;
-      right: 10%;
-    }
+    .faixa-branca{ background-color: white; right: 10%; }
+    .faixa-azulceu{ background-color: #3b74a8; right: 0%; }
 
-    .faixa-azulceu {
-      background-color: #3b74a8;
-      right: 0%;
-    }
-
-    .slogan-topo {
+    .slogan-topo{
       position: absolute;
       top: 50%;
       right: 5%;
@@ -60,7 +51,7 @@
       text-align: right;
     }
 
-    .conteudo {
+    .conteudo{
       position: relative;
       z-index: 1;
       display: flex;
@@ -72,7 +63,7 @@
       text-align: center;
     }
 
-    .logo-container {
+    .logo-container{
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -80,53 +71,31 @@
       justify-content: center;
     }
 
-    .logo {
-      width: 100%;
-      max-width: 350px;
+    .logo{ width: 100%; max-width: 350px; }
+
+    @media (max-width: 600px){
+      .conteudo{ padding: 0 10px; }
+      .logo{ max-width: 320px; }
+      .slogan-topo{ font-size: 16px; top: 50px; right: 30px; }
+      .faixa{ width: 22%; }
+      .faixa-branca{ right: 22%; }
+      .faixa-azulceu{ right: 0%; }
     }
 
-    @media (max-width: 600px) {
-      .conteudo {
-        padding: 0 10px;
-      }
-
-      .logo {
-        max-width: 320px;
-      }
-
-      .slogan-topo {
-        font-size: 16px;
-        top: 50px;
-        right: 30px;
-      }
-
-      .faixa {
-        width: 22%;
-      }
-
-      .faixa-branca {
-        right: 22%;
-      }
-
-      .faixa-azulceu {
-        right: 0%;
-      }
-    }
-
-    nav {
+    nav{
       background: #002244;
       padding: 10px;
       text-align: center;
     }
 
-    nav a {
+    nav a{
       color: white;
       margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
     }
 
-    .banner {
+    .banner{
       text-align: center;
       padding: 0;
       background-color: #004080;
@@ -135,32 +104,32 @@
       align-items: center;
     }
 
-    .banner img {
+    .banner img{
       max-width: 100%;
       max-height: 400px;
       object-fit: contain;
     }
 
-    .section {
+    .section{
       padding: 60px 20px;
       max-width: 1000px;
       margin: auto;
     }
 
-    .section h2 {
+    .section h2{
       text-align: center;
       margin-bottom: 30px;
       color: #003366;
     }
 
-    .services, .portfolio {
+    .services, .portfolio{
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
       gap: 20px;
     }
 
-    .service, .portfolio-item {
+    .service, .portfolio-item{
       flex: 1 1 200px;
       background: #f2f2f2;
       padding: 20px;
@@ -168,17 +137,17 @@
       text-align: center;
     }
 
-    .portfolio img {
+    .portfolio img{
       width: 100%;
       border-radius: 8px;
     }
 
-    .contact {
+    .contact{
       text-align: center;
       padding: 30px;
     }
 
-    .contact a {
+    .contact a{
       display: inline-block;
       margin: 10px;
       padding: 12px 20px;
@@ -188,7 +157,7 @@
       border-radius: 5px;
     }
 
-    footer {
+    footer{
       background: #002244;
       color: white;
       text-align: center;
@@ -197,12 +166,12 @@
     }
 
     /* POPUP CARDÁPIO */
-    #popup {
+    #popup{
       position: fixed;
       bottom: 15px;
       right: 15px;
       width: 280px;
-      max-width: 90%;  /* 🔹 agora adapta ao tamanho da tela */
+      max-width: 90%;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0px 3px 12px rgba(0,0,0,0.25);
@@ -210,13 +179,13 @@
       background: white;
     }
 
-    #popup img {
+    #popup img{
       width: 100%;
-      height: auto; /* 🔹 mantém proporção */
+      height: auto;
       display: block;
     }
 
-    #fecharPopup {
+    #fecharPopup{
       position: absolute;
       top: 5px;
       right: 5px;
@@ -231,19 +200,36 @@
       z-index: 10000;
     }
 
-    /* 🔹 Responsivo para celular */
-    @media (max-width: 480px) {
-      #popup {
-        bottom: 10px;
-        right: 10px;
-        width: 90%;     /* quase toda a largura da tela */
-        max-width: 320px;
-      }
+    @media (max-width: 480px){
+      #popup{ bottom: 10px; right: 10px; width: 90%; max-width: 320px; }
+      #fecharPopup{ font-size: 20px; width: 32px; height: 32px; }
+    }
 
-      #fecharPopup {
-        font-size: 20px;
-        width: 32px;
-        height: 32px;
+    /* ✅ Botão Menu de Bolos (canto superior direito) */
+    .btn-menu-bolos{
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 10001;
+      background: #ffffff;
+      color: #002244;
+      border: 2px solid #002244;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    }
+    .btn-menu-bolos:hover{
+      background: #002244;
+      color: #ffffff;
+    }
+    @media (max-width: 600px){
+      .btn-menu-bolos{
+        top: 8px;
+        right: 8px;
+        padding: 8px 10px;
+        font-size: 13px;
       }
     }
   </style>
@@ -252,10 +238,14 @@
 
   <!-- TOPO -->
   <div class="topo">
+    <!-- ✅ BOTÃO MENU DE BOLOS: abre a subpágina do GitHub Pages -->
+    <button class="btn-menu-bolos" type="button" onclick="abrirMenuBolos()">
+      Menu de Bolos
+    </button>
+
     <div class="faixa faixa-branca"></div>
     <div class="faixa faixa-azulceu"></div>
 
-    <!-- SLOGAN NO TOPO DIREITO -->
     <div class="slogan-topo"></div>
 
     <div class="conteudo">
@@ -270,8 +260,7 @@
     <a href="#quem-somos">Quem Somos</a>
     <a href="#portfolio">Portfólio</a>
     <a href="#contato">Contato</a>
-    //<!-- NOVO: aba para o sistema de ponto -->
-    //<a href="https://loreservicos.com.br/ponto/" target="_blank"></a>
+    <!-- <a href="https://loreservicos.com.br/ponto/" target="_blank" rel="noopener noreferrer">Ponto</a> -->
   </nav>
 
   <section class="banner">
@@ -280,8 +269,11 @@
 
   <section id="quem-somos" class="section">
     <h2>Quem Somos</h2>
-    <p>A Lore Serviços é especializada em soluções completas para eventos corporativos, coffee breaks, buffet e logística para ações públicas. Atuamos com qualidade, compromisso e valor em cada entrega, garantindo satisfação e pontualidade.🍃 Sabores Direto da Fazenda
-Ingredientes frescos, receitas artesanais e opções para todos os gostos — incluindo veganos🌱 e vegetarianos 🥗.</p>
+    <p>
+      A Lore Serviços é especializada em soluções completas para eventos corporativos, coffee breaks, buffet e logística para ações públicas.
+      Atuamos com qualidade, compromisso e valor em cada entrega, garantindo satisfação e pontualidade. 🍃 Sabores Direto da Fazenda
+      Ingredientes frescos, receitas artesanais e opções para todos os gostos — incluindo veganos🌱 e vegetarianos 🥗.
+    </p>
   </section>
 
   <section id="servicos" class="section">
@@ -314,7 +306,7 @@ Ingredientes frescos, receitas artesanais e opções para todos os gostos — in
     <h2>Portfólio</h2>
     <div class="portfolio">
       <div class="portfolio-item">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgD7ErRey2u-Ft4OU3woDKwCS2Ks4CZWAe7k9cx5KKVrfKjG16soRD04sgtc4HuToIi4hYs30nMv5hOnaFvQbKjDfobhcGD74-rV5lvkzcJq4TpC8BOIJQzjDhoBHJN9FupNj4WDwF5Hoja8i51QfYFst062f_ynEq28wDMR9hjiAFk2JjuLYQQxUcIhhga/s1920/C%C3%B3pia%20de%20Design%20sem%20nome%20(5).gif">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgD7ErRey2u-Ft4OU3woDKwCS2Ks4CZWAe7k9cx5KKVrfKjG16soRD04sgtc4HuToIi4hYs30nMv5hOnaFvQbKjDfobhcGD74-rV5lvkzcJq4TpC8BOIJQzjDhoBHJN9FupNj4WDwF5Hoja8i51QfYFst062f_ynEq28wDMR9hjiAFk2JjuLYQQxUcIhhga/s1920/C%C3%B3pia%20de%20Design%20sem%20nome%20(5).gif" alt="Evento 1">
         <p>Coffee Break/Brunch/Buffet</p>
       </div>
       <div class="portfolio-item">
@@ -330,17 +322,15 @@ Ingredientes frescos, receitas artesanais e opções para todos os gostos — in
 
   <section id="contato" class="section contact">
     <h2>Fale Conosco</h2>
-    <a href="https://wa.me/qr/PG3YN2EI7M27F1" target="_blank">WhatsApp</a>
-    <a href="https://www.instagram.com/lore.servicoss" target="_blank">Instagram</a>
+    <a href="https://wa.me/qr/PG3YN2EI7M27F1" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <a href="https://www.instagram.com/lore.servicoss" target="_blank" rel="noopener noreferrer">Instagram</a>
     <a href="mailto:contato@loreservicos.com.br">E-mail</a>
 
-    <!-- NOVO: botão para os colaboradores acessarem o ponto -->
-<br><br>
-<a href="https://www.geoponto.shop" target="_blank" rel="noopener noreferrer">
-  Área do Colaborador
-</a>
-</section>
-
+    <br><br>
+    <a href="https://www.geoponto.shop" target="_blank" rel="noopener noreferrer">
+      Área do Colaborador
+    </a>
+  </section>
 
   <footer>
     <p>LORE SERVIÇOS – Rua Madagascar, 537 – Santana de Parnaíba – SP</p>
@@ -352,13 +342,18 @@ Ingredientes frescos, receitas artesanais e opções para todos os gostos — in
 
   <!-- POPUP CARDÁPIO -->
   <div id="popup">
-    <button id="fecharPopup">&times;</button>
-    <img id="carouselImage" 
-      src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyD7e9P6Zer7-ls0gGuWa-uHc3YcplKPISUlsdxca67ZnuIUhO8PT7WWxR03_fJ2QXjAEU1utKJCJWJFHTpS4yBV3fMzerqnCSaNk20biDPHxDD3gxSnzsE0pAA5xog8n3nRXArXUcpFbyU-SI0k74hK2WF8VxaPkPenHnr4ZE7Im_Z-7Z644NWM5q5E1O/s1920/1.png" 
+    <button id="fecharPopup" type="button">&times;</button>
+    <img id="carouselImage"
+      src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyD7e9P6Zer7-ls0gGuWa-uHc3YcplKPISUlsdxca67ZnuIUhO8PT7WWxR03_fJ2QXjAEU1utKJCJWJFHTpS4yBV3fMzerqnCSaNk20biDPHxDD3gxSnzsE0pAA5xog8n3nRXArXUcpFbyU-SI0k74hK2WF8VxaPkPenHnr4ZE7Im_Z-7Z644NWM5q5E1O/s1920/1.png"
       alt="Cardápio">
   </div>
 
   <script>
+    // ✅ Ajuste aqui se sua subpágina estiver em /menu-de-bolos/
+    function abrirMenuBolos(){
+      window.location.href = "menu-de-bolos/";
+    }
+
     // Lista de imagens do cardápio
     const imagens = [
       "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyD7e9P6Zer7-ls0gGuWa-uHc3YcplKPISUlsdxca67ZnuIUhO8PT7WWxR03_fJ2QXjAEU1utKJCJWJFHTpS4yBV3fMzerqnCSaNk20biDPHxDD3gxSnzsE0pAA5xog8n3nRXArXUcpFbyU-SI0k74hK2WF8VxaPkPenHnr4ZE7Im_Z-7Z644NWM5q5E1O/s1920/1.png",
@@ -373,24 +368,15 @@ Ingredientes frescos, receitas artesanais e opções para todos os gostos — in
     let index = 0;
     const imgElement = document.getElementById("carouselImage");
 
-    // Troca de imagem a cada 3 segundos
     setInterval(() => {
       index = (index + 1) % imagens.length;
       imgElement.src = imagens[index];
     }, 3000);
 
-    // Botão de fechar popup
     document.getElementById("fecharPopup").addEventListener("click", () => {
       document.getElementById("popup").style.display = "none";
     });
   </script>
-
-  <style>
-    /* garantir que o botão fique na frente */
-    #fecharPopup {
-      z-index: 10000;
-    }
-  </style>
 
 </body>
 </html>
