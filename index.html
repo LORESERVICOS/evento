@@ -1,433 +1,75 @@
+!doctype html>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Eventos Corporativos | Lore Serviços</title>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Menu de Bolos</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
-
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    body { background: #fff; color: #333; }
-
-    /* TOPO */
-    .topo{
-      position: relative;
-      width: 100%;
-      background-color: #1d3f5f;
-      display: flex;
-      justify-content: center;
-      padding: 10px 0;
-      overflow: hidden;
-    }
-
-    .faixa{
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 10%;
-      transform: skewX(-20deg);
-      z-index: 0;
-    }
-
-    .faixa-branca{ background-color: white; right: 10%; }
-    .faixa-azulceu{ background-color: #3b74a8; right: 0%; }
-
-    .slogan-topo{
-      position: absolute;
-      top: 50%;
-      right: 5%;
-      color: black;
-      font-size: 20px;
-      font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-      z-index: 2;
-      text-align: right;
-    }
-
-    .conteudo{
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      max-width: 1100px;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .logo-container{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 5cm;
-      justify-content: center;
-    }
-
-    .logo{ width: 100%; max-width: 350px; }
-
-    @media (max-width: 600px){
-      .conteudo{ padding: 0 10px; }
-      .logo{ max-width: 320px; }
-      .slogan-topo{ font-size: 16px; top: 50px; right: 30px; }
-      .faixa{ width: 22%; }
-      .faixa-branca{ right: 22%; }
-      .faixa-azulceu{ right: 0%; }
-    }
-
-    nav{
-      background: #002244;
-      padding: 10px;
-      text-align: center;
-    }
-
-    nav a{
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .banner{
-      text-align: center;
-      padding: 0;
-      background-color: #004080;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .banner img{
-      max-width: 100%;
-      max-height: 400px;
-      object-fit: contain;
-    }
-
-    .section{
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .section h2{
-      text-align: center;
-      margin-bottom: 30px;
-      color: #003366;
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Montserrat', sans-serif;
-    }
-
-    .services, .portfolio{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 20px;
-    body{
-      background:#fff;
-      color:#333;
-    }
-
-    .service, .portfolio-item{
-      flex: 1 1 200px;
-      background: #f2f2f2;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    .portfolio img{
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .contact{
-      text-align: center;
-      padding: 30px;
-    }
-
-    .contact a{
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 20px;
-      background: #003366;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-
-    footer{
-      background: #002244;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-
-    /* POPUP CARDÁPIO */
-    #popup{
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      width: 280px;
-      max-width: 90%;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0px 3px 12px rgba(0,0,0,0.25);
-      z-index: 9999;
-      background: white;
-    }
-
-    #popup img{
-      width: 100%;
-      height: auto;
-      display: block;
-    .topo{
-      position:relative;
-      width:100%;
-      background:#1d3f5f;
-      display:flex;
-      justify-content:center;
-      padding:10px 0;
-    }
-
-    #fecharPopup{
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      font-size: 18px;
-      background: rgba(0,0,0,0.6);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 28px;
-      height: 28px;
-      cursor: pointer;
-      z-index: 10000;
-    .btn-menu{
-      position:absolute;
-      right:12px;
-      z-index:10001;
-      background:#fff;
-      color:#002244;
-      border:2px solid #002244;
-      border-radius:10px;
-      padding:10px 14px;
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    @media (max-width: 480px){
-      #popup{ bottom: 10px; right: 10px; width: 90%; max-width: 320px; }
-      #fecharPopup{ font-size: 20px; width: 32px; height: 32px; }
-    }
-    .btn-bolos{ top:12px; }
-    .btn-tabuas{ top:60px; }
-
-    /* ✅ Botão Menu de Bolos (canto superior direito) */
-    .btn-menu-bolos{
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      z-index: 10001;
-      background: #ffffff;
-      color: #002244;
-      border: 2px solid #002244;
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-    }
-    .btn-menu-bolos:hover{
-      background: #002244;
-      color: #ffffff;
-    }
-    @media (max-width: 600px){
-      .btn-menu-bolos{
-        top: 8px;
-        right: 8px;
-        padding: 8px 10px;
-        font-size: 13px;
-      }
-    .logo{
-      max-width:350px;
-    }
+    body{margin:0;background:#f8fafc;font-family:Montserrat,system-ui,Arial,sans-serif}
+    header{padding:14px 16px;background:#002244;color:#fff;font-weight:700}
+    .wrap{max-width:1100px;margin:0 auto;padding:14px}
+    img{width:100%;height:auto;border-radius:12px;margin:10px 0;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+    .btn-voltar{display:inline-block;margin:8px 0 14px 0;background:#002244;color:#fff;text-decoration:none;padding:10px 14px;border-radius:10px;font-weight:700}
   </style>
+<meta charset="UTF-8">
+<title>Menu de Bolos</title>
+
+<style>
+body{
+  margin:0;
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:20px;
+  font-family:Arial;
+}
+
+.voltar{
+  display:inline-block;
+  margin-bottom:20px;
+  background:#fff;
+  color:#002244;
+  padding:10px 15px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+img{
+  width:100%;
+  max-width:900px;
+  margin-bottom:20px;
+  border-radius:12px;
+}
+</style>
 </head>
+
 <body>
+  <header>Menu de Bolos</header>
 
-  <!-- TOPO -->
-  <div class="topo">
-    <!-- ✅ BOTÃO MENU DE BOLOS: abre a subpágina do GitHub Pages -->
-    <button class="btn-menu-bolos" type="button" onclick="abrirMenuBolos()">
-      Menu de Bolos
-    </button>
+  <div class="wrap">
+    <a class="btn-voltar" href="../index.html">← Voltar</a>
+<h1>Menu de Bolos</h1>
 
-    <div class="faixa faixa-branca"></div>
-    <div class="faixa faixa-azulceu"></div>
+<a href="../" class="voltar">← Voltar</a>
 
-    <div class="slogan-topo"></div>
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyD7e9P6Zer7-ls0gGuWa-uHc3YcplKPISUlsdxca67ZnuIUhO8PT7WWxR03_fJ2QXjAEU1utKJCJWJFHTpS4yBV3fMzerqnCSaNk20biDPHxDD3gxSnzsE0pAA5xog8n3nRXArXUcpFbyU-SI0k74hK2WF8VxaPkPenHnr4ZE7Im_Z-7Z644NWM5q5E1O/s1920/1.png">
 
-    <div class="conteudo">
-      <div class="logo-container">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRhIpl3j-MI2sDg-asUK8RoLKgTg0JbEYIm5ptemzwKMr4OZAJ7Qpsu3rZZMriVUun42v7wN6iIqKmlMBU73vnIB_8rEoQQGRPKBfrPo0Tqz5OcRwwDmEGsL84avGefKKs9bAtohPO5EJ4Hmj8d86OPW9oXU0HqMw4j7TUBIEIfaJpbRWYKW5pZqL4PhD5/s500/logotipo%20lore%20azul.png" alt="Logotipo Lore" class="logo"/>
-      </div>
-    </div>
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZBs_hMn3GyfSju6lTadcRQmHv7y0lQYLMZjSzw-c6W1wFNe67o4n9RmBiH3xmdH0HZqYVK27WwZpFQFtvAB40WiAx-s56_ADWPZ4u27g5iA5HbOub3L2g7XN311RuLF4YYN2RluvzdXkWAzANHH_MYM4eKTmQXRLiJqdF22StrZgvO4FQ_0sLGSrG1WqX/s1920/2.png">
+
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYZ0kTiosqrwBQP8kodexIksI19OJI2Dq6M7FhtwNI4xXrlQepfPyzOdchEEGzKivawbaAuXy973m8FspzjUEheNiDDI07S1AbQzVYROGIqGvxI83lUvNDsqe0YMNbAPJtTWm20zJKsIbiGQqTdOrWq2U7S-mWNHUpxMghmuyZXqHhQOTduDcFo_7kvUCU/s1920/3.png">
+
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7EXMSg4v8levlEp8AzoUYqGUHa2weQUf63gue8xuVyiNuH9ByQNxljbWfTTdVwOrPPKY_zw0V8uIL_4i0unGPzg_J39WtlCf-9ekT6SyBBWXkxo5bElqoWHpirL1p1ax8OSx1YMMielrugEQDMjMIA4Cu2LcJd7kWEsJ5JAwl0xnrpe22HqijrCe_PIoS/s1920/4.png">
+
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiX-znPLHi6IJdt1p5ZrWsiO2478AHj0kyrXcdMxvthNxtBiKWWWqORpVBglKcML9gae7QWPZrRugY7-M3jCfnl6W4kgti9sL8hLwfCOCmdzw1RWKCf_J1iZf32BDzd8oGRS8bJBYQ-JmDTl-xS5cCpmCjJ2HCvVEhLBx4wZH80o3_m8a93wwAjA62k5ybD/s1920/5.png">
+
+    <img src="../1.jpg" alt="Menu de Bolos - Página 1">
+    <img src="../2.jpg" alt="Menu de Bolos - Página 2">
+    <img src="../3.jpg" alt="Menu de Bolos - Página 3">
+    <img src="../4.jpg" alt="Menu de Bolos - Página 4">
+    <img src="../5.jpg" alt="Menu de Bolos - Página 5">
   </div>
-
-  <nav>
-    <a href="#servicos">Serviços</a>
-    <a href="#quem-somos">Quem Somos</a>
-    <a href="#portfolio">Portfólio</a>
-    <a href="#contato">Contato</a>
-    <!-- <a href="https://loreservicos.com.br/ponto/" target="_blank" rel="noopener noreferrer">Ponto</a> -->
-  </nav>
-
-  <section class="banner">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgH3Ue5No6TLJiLVfUg74al6bVSLnBP6E6R8tYD-Bxq3uE3-0HpZrsfujdS_hOTHWbL5AEOJDM44DOh0QHSPArCcP_ntUSc09wXNB9MBeF6RceUbmRwxPH9IfRb579SKJlUxn8pqM115ILJvmLr8H0sUIuNzZ68iEd76iejTST_qODc6cozoedK6i5dX9tc/s1920/Eventos%20corporativos%20(1).gif" alt="Banner Coffee Break"/>
-  </section>
-
-  <section id="quem-somos" class="section">
-    <h2>Quem Somos</h2>
-    <p>
-      A Lore Serviços é especializada em soluções completas para eventos corporativos, coffee breaks, buffet e logística para ações públicas.
-      Atuamos com qualidade, compromisso e valor em cada entrega, garantindo satisfação e pontualidade. 🍃 Sabores Direto da Fazenda
-      Ingredientes frescos, receitas artesanais e opções para todos os gostos — incluindo veganos🌱 e vegetarianos 🥗.
-    </p>
-  </section>
-
-  <section id="servicos" class="section">
-    <h2>Nossos Serviços</h2>
-    <div class="services">
-      <div class="service">
-        <h3>Coffee Break</h3>
-        <p>Montagem completa com bebidas, salgados e doces para eventos.</p>
-      </div>
-      <div class="service">
-        <h3>Buffet/Catering</h3>
-        <p>Buffet completo para eventos corporativos e institucionais.</p>
-      </div>
-      <div class="service">
-        <h3>Logística</h3>
-        <p>Organização e transporte de insumos para eventos,ações públicas e privadas.</p>
-      </div>
-      <div class="service">
-        <h3>Kit Lanche Personalizado</h3>
-        <p>Kits embalados individualmente, com personalização sob medida.</p>
-      </div>
-      <div class="service">
-        <h3>Nutricionista</h3>
-        <p>Acompanhamento nutricional em eventos com cardápios balanceados e personalizados.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="portfolio" class="section">
-    <h2>Portfólio</h2>
-    <div class="portfolio">
-      <div class="portfolio-item">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgD7ErRey2u-Ft4OU3woDKwCS2Ks4CZWAe7k9cx5KKVrfKjG16soRD04sgtc4HuToIi4hYs30nMv5hOnaFvQbKjDfobhcGD74-rV5lvkzcJq4TpC8BOIJQzjDhoBHJN9FupNj4WDwF5Hoja8i51QfYFst062f_ynEq28wDMR9hjiAFk2JjuLYQQxUcIhhga/s1920/C%C3%B3pia%20de%20Design%20sem%20nome%20(5).gif" alt="Evento 1">
-        <p>Coffee Break/Brunch/Buffet</p>
-      </div>
-      <div class="portfolio-item">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjNExja4zNR92e2ZoiBfhH3iLzawfmA2mhc4InRbb5CCPX3AK8qweYsAYqTr3NQrkBNqlpnyDTM76XJDfSPOO2zy3bCln57BHAlGOAAT52xhOHla5luLc3zRcdw8w-BM3NeHga_UUuO-nptcLnr_aeHmGhBUHewmnj4YJAHEKPFoN1FNANuqFYRZj4l7gOQ/s1920/kit%20lanche%20(2).gif" alt="Evento 2">
-        <p>Kit Lanche</p>
-      </div>
-      <div class="portfolio-item">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjF7M-aaAmsARXNm2guPKZ8wBtlJGB-1LOFLlKNLl3VxpHFEZ9Bq0ErVNZZQDBrwTuzdDy0_usVkf37BK3lIr0trKGa2WkTSfmCEj1bHaehnEN85h48S38Swai6gz6K8eyYR0qoAPqdCHxe1qbRcvYUJ9ORabGj2IiwPCy8vUf8sMgKQDTuOztM8vJThTKz/s1920/clientes%20(2).gif" alt="Evento 3">
-        <p>Clientes</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contato" class="section contact">
-    <h2>Fale Conosco</h2>
-    <a href="https://wa.me/qr/PG3YN2EI7M27F1" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-    <a href="https://www.instagram.com/lore.servicoss" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <a href="mailto:contato@loreservicos.com.br">E-mail</a>
-
-    <br><br>
-    <a href="https://www.geoponto.shop" target="_blank" rel="noopener noreferrer">
-      Área do Colaborador
-    </a>
-  </section>
-<body>
-
-  <footer>
-    <p>LORE SERVIÇOS – Rua Madagascar, 537 – Santana de Parnaíba – SP</p>
-    <p>CNPJ: 50.743.220.0001-83 Matriz </p>
-    <p>CNPJ: 62.593.910.0001-82 Filiada</p>
-    <p>Email para Orçamentos: loreservicos@gmail.com</p>
-    <p>&copy; 2023 Todos os direitos reservados</p>
-  </footer>
-<div class="topo">
-
-  <!-- POPUP CARDÁPIO -->
-  <div id="popup">
-    <button id="fecharPopup" type="button">&times;</button>
-    <img id="carouselImage"
-      src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyD7e9P6Zer7-ls0gGuWa-uHc3YcplKPISUlsdxca67ZnuIUhO8PT7WWxR03_fJ2QXjAEU1utKJCJWJFHTpS4yBV3fMzerqnCSaNk20biDPHxDD3gxSnzsE0pAA5xog8n3nRXArXUcpFbyU-SI0k74hK2WF8VxaPkPenHnr4ZE7Im_Z-7Z644NWM5q5E1O/s1920/1.png"
-      alt="Cardápio">
-  </div>
-  <!-- MENU BOLOS -->
-  <button class="btn-menu btn-bolos" onclick="abrirMenuBolos()">
-    Menu de Bolos
-  </button>
-
-  <script>
-    // ✅ Ajuste aqui se sua subpágina estiver em /menu-de-bolos/
-    function abrirMenuBolos(){
-      window.location.href = "menu-de-bolos/";
-    }
-  <!-- MENU TABUAS -->
-  <button class="btn-menu btn-tabuas" onclick="abrirMenuTabuas()">
-    Menu de Tábuas
-  </button>
-
-    // Lista de imagens do cardápio
-    const imagens = [
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyD7e9P6Zer7-ls0gGuWa-uHc3YcplKPISUlsdxca67ZnuIUhO8PT7WWxR03_fJ2QXjAEU1utKJCJWJFHTpS4yBV3fMzerqnCSaNk20biDPHxDD3gxSnzsE0pAA5xog8n3nRXArXUcpFbyU-SI0k74hK2WF8VxaPkPenHnr4ZE7Im_Z-7Z644NWM5q5E1O/s1920/1.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZBs_hMn3GyfSju6lTadcRQmHv7y0lQYLMZjSzw-c6W1wFNe67o4n9RmBiH3xmdH0HZqYVK27WwZpFQFtvAB40WiAx-s56_ADWPZ4u27g5iA5HbOub3L2g7XN311RuLF4YYN2RluvzdXkWAzANHH_MYM4eKTmQXRLiJqdF22StrZgvO4FQ_0sLGSrG1WqX/s1920/2.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYZ0kTiosqrwBQP8kodexIksI19OJI2Dq6M7FhtwNI4xXrlQepfPyzOdchEEGzKivawbaAuXy973m8FspzjUEheNiDDI07S1AbQzVYROGIqGvxI83lUvNDsqe0YMNbAPJtTWm20zJKsIbiGQqTdOrWq2U7S-mWNHUpxMghmuyZXqHhQOTduDcFo_7kvUCU/s1920/3.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7EXMSg4v8levlEp8AzoUYqGUHa2weQUf63gue8xuVyiNuH9ByQNxljbWfTTdVwOrPPKY_zw0V8uIL_4i0unGPzg_J39WtlCf-9ekT6SyBBWXkxo5bElqoWHpirL1p1ax8OSx1YMMielrugEQDMjMIA4Cu2LcJd7kWEsJ5JAwl0xnrpe22HqijrCe_PIoS/s1920/4.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiX-znPLHi6IJdt1p5ZrWsiO2478AHj0kyrXcdMxvthNxtBiKWWWqORpVBglKcML9gae7QWPZrRugY7-M3jCfnl6W4kgti9sL8hLwfCOCmdzw1RWKCf_J1iZf32BDzd8oGRS8bJBYQ-JmDTl-xS5cCpmCjJ2HCvVEhLBx4wZH80o3_m8a93wwAjA62k5ybD/s1920/5.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEialAliuOd-A0KssVD1C5PTcojfQp05sHE9zhs7pwN94EpeydbF8HK6vn1oXBzHlIl9i2zmLQnTOHYeSApdPXSLXYXSsR9-0XnrQanfj3RpzNwOezOkjByVV8tAxBlkbeBqcLnBmwsMo56ttD_sGCPhrtAgkgth7q-fOQWNYV_WhbUUbAtsUa5-TyMgWB0V/s1920/6.png",
-      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiTEXDZ0QUHWohJz-mkz6CjHzJAyF7sMQ7ywJ70wvoFwbPHdRNz8qvS4am4U4OAzWPLusdrS0r-vjIl9qzvtxSdN7t08PmqAWhuitAswgu4zvQnCgjQVCavQ4lF7EV6HrF1PMpy3n2DBPFxGBtBFX2dDWDkT7o_V94ca9nsOuHplKQUcvL-p07zlWu2MSSm/s1920/7.png"
-    ];
-  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRhIpl3j-MI2sDg-asUK8RoLKgTg0JbEYIm5ptemzwKMr4OZAJ7Qpsu3rZZMriVUun42v7wN6iIqKmlMBU73vnIB_8rEoQQGRPKBfrPo0Tqz5OcRwwDmEGsL84avGefKKs9bAtohPO5EJ4Hmj8d86OPW9oXU0HqMw4j7TUBIEIfaJpbRWYKW5pZqL4PhD5/s500/logotipo%20lore%20azul.png" class="logo">
-
-    let index = 0;
-    const imgElement = document.getElementById("carouselImage");
-</div>
-
-    setInterval(() => {
-      index = (index + 1) % imagens.length;
-      imgElement.src = imagens[index];
-    }, 3000);
-<script>
-function abrirMenuBolos(){
-  window.location.href = "menu-de-bolos/";
-}
-
-    document.getElementById("fecharPopup").addEventListener("click", () => {
-      document.getElementById("popup").style.display = "none";
-    });
-  </script>
-function abrirMenuTabuas(){
-  window.location.href = "menu-de-tabuas/";
-}
-</script>
-
 </body>
 </html>
