@@ -4,19 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu de Tábuas | Lore Serviços</title>
+
   <style>
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
-      font-family: Arial, sans-serif;
+      font-family:Arial, sans-serif;
     }
 
     body{
       background:#111;
       color:#fff;
-      min-height:100vh;
       text-align:center;
+      min-height:100vh;
       padding:20px;
     }
 
@@ -39,9 +40,9 @@
 
     .galeria{
       display:flex;
-      justify-content:center;
-      align-items:center;
       flex-direction:column;
+      align-items:center;
+      justify-content:center;
     }
 
     .galeria img{
@@ -49,7 +50,30 @@
       max-width:900px;
       border-radius:12px;
       box-shadow:0 4px 20px rgba(0,0,0,0.5);
-      display:block;
+    }
+
+    .controles{
+      margin-top:20px;
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .controles button{
+      background:#fff;
+      color:#002244;
+      border:none;
+      padding:12px 18px;
+      border-radius:8px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .contador{
+      margin-top:15px;
+      font-size:16px;
+      opacity:0.9;
     }
   </style>
 </head>
@@ -60,9 +84,45 @@
   <h1>Menu de Tábuas</h1>
 
   <div class="galeria">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjevdlioDGe9KUFm_N9ypaUaFhtcHu9EUdb6EapPvwHgeQ_H-HTdmVYB3fzny6WcENUIrU0a0zttJD5XtHlq4CN9p4wxg0ybW0JKa6WNXvjCJ7tIAJwUCPKmb_uKUxZ8nELMsxTaczgCiXK-XL4e1XgDg0oJ5vprGUGXnebITuhl9mMJzFPMomS0cAG_qHN/s1366/1.jpg",
-"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGGlBlIYqJIXY1gHmlUMrD41__38B3GcvskCFZjv9JI85pNOwJB5N49WUiV6KH0zhla31FNfMnZKNJgOkZ0BJ7YDmda20wO36bFw09iXWmYmnRqbmVtagGrWy9s5jF2Fcd_oHhT9HXGVIbOU0-V7iaYJFcC0zDf551KaZp8mRWL_4_vFwxBSmX1ath__0o/s1366/2.jpg",>
+    <img id="imagemMenu" src="" alt="Menu de Tábuas">
+    <div class="contador" id="contador"></div>
+
+    <div class="controles">
+      <button type="button" onclick="anterior()">⬅ Anterior</button>
+      <button type="button" onclick="proxima()">Próxima ➡</button>
+    </div>
   </div>
+
+  <script>
+    const imagens = [
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhxql2i2HpRVsZ0MIbqQ_LOZB05jJPDUBk6RP-LDe-KGo42y3bWoIhn67ZrkeeJbykBB9VwIOTZTHpt5AtGvQG7OABrRAkG6vSGCh5BG9amRPQPWca4DTYMSLvdVQiB97Vl_GvQSQ6BRliJIWmDiUrPRZ9ATn1m1ZRisFgJTToEQrtNn3TxPZFbnkWpEuic/s1366/1.jpg"
+,"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGGlBlIYqJIXY1gHmlUMrD41__38B3GcvskCFZjv9JI85pNOwJB5N49WUiV6KH0zhla31FNfMnZKNJgOkZ0BJ7YDmda20wO36bFw09iXWmYmnRqbmVtagGrWy9s5jF2Fcd_oHhT9HXGVIbOU0-V7iaYJFcC0zDf551KaZp8mRWL_4_vFwxBSmX1ath__0o/s1366/2.jpg"
+      ,"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwCWvpaauEHjbwl9-2Hk6cxuRhlKkFfLYD0OHu2FOtmWStcPQL234HVrmFX0jlJQ-f0-P3Fea27CgErRDIyLU7rWHGaB7cxvzRPK79KInc0mfODoloynQ29g3_IvEFCsnMA739oflNN0epiT1_OtN4tGaf7qVBjWo1dUUFUHftfROqKSdeaq85ageEpKLf/s1366/3.jpg"
+,"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJSDyQrU1VJr2EV6cgS5KCjtCp5OOzNVymP4kuGacZPAWxflynxUbLpPs6CjFHMLflq7Yq_pC7GuIG4Q28zGgSwSXVrjTPJJT0l0XBePG2E31-vBeQvurmGJf2cg9pnAQ_A7-q26rMioKhnKdDwVWbHan-hW5uQtg833zMFvib2oWdqd9o1nAlpOkBxqV1/s1366/4.jpg"
+,"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRlGVbTi_Mvl4FggDeKkQ_nh4q4lW65t0PJb4UnnRF9O8El1fW2hx5BogRqn0d-lgIQoVjLWA6nzWANPr_znYCVaV6P7kbjsmQ3xohwtiu7xKO58V_9ofAjPxYoGSjzrySwBa1-jaFxkoZPo7bUDZI9Z76vvRcIlHTideM6ypAoGox3E8tkM9MQFA2kKBj/s1366/5.jpg"
+    ];
+
+    let index = 0;
+    const img = document.getElementById("imagemMenu");
+    const contador = document.getElementById("contador");
+
+    function mostrarImagem(){
+      img.src = imagens[index];
+      contador.textContent = `Imagem ${index + 1} de ${imagens.length}`;
+    }
+
+    function proxima(){
+      index = (index + 1) % imagens.length;
+      mostrarImagem();
+    }
+
+    function anterior(){
+      index = (index - 1 + imagens.length) % imagens.length;
+      mostrarImagem();
+    }
+
+    mostrarImagem();
+  </script>
 
 </body>
 </html>
