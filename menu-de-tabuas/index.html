@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eventos Corporativos | Lore Serviços</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body { background: #fff; color: #333; }
+
+    .topo{
+      position: relative;
+      width: 100%;
+      background-color: #1d3f5f;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      overflow: hidden;
+    }
+
+    .faixa{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 10%;
+      transform: skewX(-20deg);
+      z-index: 0;
+    }
+
+    .faixa-branca{ background-color: white; right: 10%; }
+    .faixa-azulceu{ background-color: #3b74a8; right: 0%; }
+
+    .slogan-topo{
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      color: black;
+      font-size: 20px;
+      font-weight: bold;
+      z-index: 2;
+      text-align: right;
+    }
+
+    .conteudo{
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1100px;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .logo-container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 5cm;
+      justify-content: center;
+    }
+
+    .logo{ width: 100%; max-width: 350px; }
+
+    nav{
+      background: #002244;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a{
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .banner{
+      text-align: center;
+      padding: 0;
+      background-color: #004080;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .banner img{
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+    }
+
+    .section{
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section h2{
+      text-align: center;
+      margin-bottom: 30px;
+      color: #003366;
+    }
+
+    .services, .portfolio{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    .service, .portfolio-item{
+      flex: 1 1 200px;
+      background: #f2f2f2;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .portfolio img{
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .contact{
+      text-align: center;
+      padding: 30px;
+    }
+
+    .contact a{
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      background: #003366;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    footer{
+      background: #002244;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    #popup{
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      width: 280px;
+      max-width: 90%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0px 3px 12px rgba(0,0,0,0.25);
+      z-index: 9999;
+      background: white;
+    }
+
+    #popup img{
+      width: 100%;
+    }
+
+    #fecharPopup{
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 18px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    /* BOTÕES */
+    .btn-menu-bolos{
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 10001;
+      background: #ffffff;
+      color: #002244;
+      border: 2px solid #002244;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    }
+
+    .btn-menu-bolos:hover{
+      background: #002244;
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="topo">
+
+  <!-- BOTÃO BOLOS -->
+  <button class="btn-menu-bolos" onclick="abrirMenuBolos()">
+    Menu de Bolos
+  </button>
+
+  <!-- NOVO BOTÃO TABUAS -->
+  <button class="btn-menu-bolos" onclick="abrirMenuTabuas()" style="top: 60px;">
+    Tábua de Frios
+  </button>
+
+  <div class="faixa faixa-branca"></div>
+  <div class="faixa faixa-azulceu"></div>
+
+  <div class="conteudo">
+    <div class="logo-container">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRhIpl3j-MI2sDg-asUK8RoLKgTg0JbEYIm5ptemzwKMr4OZAJ7Qpsu3rZZMriVUun42v7wN6iIqKmlMBU73vnIB_8rEoQQGRPKBfrPo0Tqz5OcRwwDmEGsL84avGefKKs9bAtohPO5EJ4Hmj8d86OPW9oXU0HqMw4j7TUBIEIfaJpbRWYKW5pZqL4PhD5/s500/logotipo%20lore%20azul.png">
+    </div>
+  </div>
+</div>
+
+<script>
+function abrirMenuBolos(){
+  window.location.href = "menu-de-bolos/";
+}
+
+function abrirMenuTabuas(){
+  window.location.href = "menu-de-tabuas/";
+}
+</script>
+
+</body>
+</html>
