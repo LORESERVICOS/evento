@@ -252,6 +252,60 @@
         font-size: 13px;
       }
     }
+
+    /* GALERIA DE FOTOS EM MOVIMENTO */
+    .galeria-movimento{
+      overflow: hidden;
+      max-width: 1000px;
+      margin: 10px auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .galeria-linha{
+      display: flex;
+      gap: 14px;
+      width: max-content;
+    }
+
+    .galeria-linha img{
+      width: 260px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .galeria-linha.linha-esquerda{
+      animation: galeriaEsquerda 35s linear infinite;
+    }
+
+    .galeria-linha.linha-direita{
+      animation: galeriaDireita 40s linear infinite;
+    }
+
+    @keyframes galeriaEsquerda{
+      from{ transform: translateX(0); }
+      to{ transform: translateX(-50%); }
+    }
+
+    @keyframes galeriaDireita{
+      from{ transform: translateX(-50%); }
+      to{ transform: translateX(0); }
+    }
+
+    @media (max-width: 768px){
+      .galeria-movimento{
+        margin: 10px 10px 0 10px;
+      }
+
+      .galeria-linha img{
+        width: 220px;
+        height: 150px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -289,7 +343,7 @@
   </nav>
 
   <section class="banner">
-    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgH3Ue5No6TLJiLVfUg74al6bVSLnBP6E6R8tYD-Bxq3uE3-0HpZrsfujdS_hOTHWbL5AEOJDM44DOh0QHSPArCcP_ntUSc09wXNB9MBeF6RceUbmRwxPH9IfRb579SKJlUxn8pqM115ILJvmLr8H0sUIuNzZ68iEd76iejTST_qODc6cozoedK6i5dX9tc/s1920/Eventos%20corporativos%20(1).gif" alt="Banner Coffee Break"/>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjS9zKEVfOIsLN-5OZHrPcU8_S7T_CqENcwBoJMmscobZUPwwctJnPTWuLsZWyd42YTYQkNM9Ob9bNi9HuBjkLKHUqYc2uLTW5L5hsTsH_26G8xcMtX5FG6linFda5uKK1D59VVxawaEkBmK2rpgToQZxrDqly2O8dsPMhDbkpKXIPRrpL_ANV72XiSAey5/s1152/Eventos%20corporativos%20(3).gif" alt="Banner Coffee Break"/>
   </section>
 
   <section id="quem-somos" class="section">
@@ -324,24 +378,7 @@
         <h3>Nutricionista</h3>
         <p>Acompanhamento nutricional em eventos com cardápios balanceados e personalizados.</p>
       </div>
-    </div>
-  </section>
-
-  <section id="portfolio" class="section">
-    <h2>Portfólio</h2>
-    <div class="portfolio">
-      <div class="portfolio-item">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgD7ErRey2u-Ft4OU3woDKwCS2Ks4CZWAe7k9cx5KKVrfKjG16soRD04sgtc4HuToIi4hYs30nMv5hOnaFvQbKjDfobhcGD74-rV5lvkzcJq4TpC8BOIJQzjDhoBHJN9FupNj4WDwF5Hoja8i51QfYFst062f_ynEq28wDMR9hjiAFk2JjuLYQQxUcIhhga/s1920/C%C3%B3pia%20de%20Design%20sem%20nome%20(5).gif" alt="Evento 1">
-        <p>Coffee Break/Brunch/Buffet</p>
-      </div>
-      <div class="portfolio-item">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjNExja4zNR92e2ZoiBfhH3iLzawfmA2mhc4InRbb5CCPX3AK8qweYsAYqTr3NQrkBNqlpnyDTM76XJDfSPOO2zy3bCln57BHAlGOAAT52xhOHla5luLc3zRcdw8w-BM3NeHga_UUuO-nptcLnr_aeHmGhBUHewmnj4YJAHEKPFoN1FNANuqFYRZj4l7gOQ/s1920/kit%20lanche%20(2).gif" alt="Evento 2">
-        <p>Kit Lanche</p>
-      </div>
-      <div class="portfolio-item">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjF7M-aaAmsARXNm2guPKZ8wBtlJGB-1LOFLlKNLl3VxpHFEZ9Bq0ErVNZZQDBrwTuzdDy0_usVkf37BK3lIr0trKGa2WkTSfmCEj1bHaehnEN85h48S38Swai6gz6K8eyYR0qoAPqdCHxe1qbRcvYUJ9ORabGj2IiwPCy8vUf8sMgKQDTuOztM8vJThTKz/s1920/clientes%20(2).gif" alt="Evento 3">
-        <p>Clientes</p>
-      </div>
+ 
     </div>
   </section>
 
@@ -355,6 +392,39 @@
     <a href="https://www.geoponto.shop" target="_blank" rel="noopener noreferrer">
       Área do Colaborador
     </a>
+  </section>
+
+  <!-- GALERIA ACRESCENTADA NO FINAL -->
+  <section class="galeria-movimento">
+    <div class="galeria-linha linha-esquerda">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlIJRGim2VAILxvG8VeiEXmNLXOnAFNX9mqveKBdTMclUyhIz3dhjapKGqTffh4cdp-EU5lODhUf4IHGLMIM7rPNIB0vFShwNNSfri2v_zoX-8aOPqcMYeONtDsS0rSQtvfit_AarMwPX20h3y-fA3vCC5mY7VDmf8od9sSP3Yo-GX-YWQyUw08hE3u73B/s1920/1.jpg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhT9QBI_jPd1OhoYgGIPMKWy9YeWkXAMiE2offL8qtgirD2uM5Qm5sGpEb7tnUX85QnSRNi8yohYx_KS5GSDoDc3jUT4jIBcQWlPdXQkaVAhQfy9pLCBIxPITG1-0vE8DA98qHC9Yeq3XFvhn_dj_lXZ_KaEWbdD2Q9V64hM3C4JUSMXXfJODt2LgxaWP80/s1920/2.jpg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj-tasgRLdr8XRCfGyWnWNBqxt346rjr3sskFWrEBaf9lpnwJ7vjHndrSbxESfvTfuuG-t-BwwOut5TE0ir0Fnmpk8AiW_MuYFXfijtyBE7JUO9JoVwhsHBW_styTkgOvTrCMi9OlB60FoGIlZqv_BjjFXZIrfyrPDGYVsKMvelGNIGI1mZOz42M-OWnBjR/s1920/3.jpg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyKhJ6KmuNTASZ4fit1OLLMU-PpRgn5UphhtNggGmVcec26Nc373dphMsq82bOGN4loX1vIzRqVJHQi36bwHixKlWeiTQVLOtlSnGLERxv6MRdiNK8rnX5qMY_t-8ssD3R6vxsFpRZudlaxmX76X9ntfI-QQTrNzuP1aasPmpWQQn4zp0zQdNq9dj4oTWB/s1920/4.jpg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhsv47wGDVq-CHUbh8c9ySwvmlNQ5e5x11MVekywL_7vAtSPSGWsjlT-MFai9FPQk-3JRpT94f3zP8XbtpV4BX0Xz-7jpvrTnUx6db8uwO6hCBnMwNHGYcQhfYJqUTFjBzj_lPDwb8PoxqIVucJyTfZV4ew9icKZfVFV9dsz56iduhzse12rmjHchVbfINb/s1920/6.jpg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjr932ybBu96PAZIyUEt5CvE6jHPmquk0zB7bO4c90QeqcIJ5v8zusanYzqTMf5iop29mmRXHA0tWyT6BXQAt7eoySzUFhrn7e0jOR0CWI6nu76htPO8mbRH_loXyxSma_Io_xQMrBOiDdxQwwx-m8QESf1PoeTk4-e3pRHUr-Fs1YcxwUxZecPwAEEPKtV/s1920/7.jpg" alt="">
+ <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0qDCwyKl6Jzp-KBIg9rUEeiT0E3Xo18RsRhu-OgzgOFUb-eez2NMJ8A4XQ378Xp_i70Dj2JVJ3LqDJsUKs7q61bw6K03wnF9WfdcLE4d6HAwUi-SN6q_1ywb667kT2upejF9lF7X4Ju71tSoZ5EIY-sR9PGiHPC3trwAhWvSx-oaTEBIf50mGdzpEZRmA/s1920/12.jpg" alt="">
+
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjlIJRGim2VAILxvG8VeiEXmNLXOnAFNX9mqveKBdTMclUyhIz3dhjapKGqTffh4cdp-EU5lODhUf4IHGLMIM7rPNIB0vFShwNNSfri2v_zoX-8aOPqcMYeONtDsS0rSQtvfit_AarMwPX20h3y-fA3vCC5mY7VDmf8od9sSP3Yo-GX-YWQyUw08hE3u73B/s1920/1.jpg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhT9QBI_jPd1OhoYgGIPMKWy9YeWkXAMiE2offL8qtgirD2uM5Qm5sGpEb7tnUX85QnSRNi8yohYx_KS5GSDoDc3jUT4jIBcQWlPdXQkaVAhQfy9pLCBIxPITG1-0vE8DA98qHC9Yeq3XFvhn_dj_lXZ_KaEWbdD2Q9V64hM3C4JUSMXXfJODt2LgxaWP80/s1920/2.jpg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj-tasgRLdr8XRCfGyWnWNBqxt346rjr3sskFWrEBaf9lpnwJ7vjHndrSbxESfvTfuuG-t-BwwOut5TE0ir0Fnmpk8AiW_MuYFXfijtyBE7JUO9JoVwhsHBW_styTkgOvTrCMi9OlB60FoGIlZqv_BjjFXZIrfyrPDGYVsKMvelGNIGI1mZOz42M-OWnBjR/s1920/3.jpg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyKhJ6KmuNTASZ4fit1OLLMU-PpRgn5UphhtNggGmVcec26Nc373dphMsq82bOGN4loX1vIzRqVJHQi36bwHixKlWeiTQVLOtlSnGLERxv6MRdiNK8rnX5qMY_t-8ssD3R6vxsFpRZudlaxmX76X9ntfI-QQTrNzuP1aasPmpWQQn4zp0zQdNq9dj4oTWB/s1920/4.jpg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhsv47wGDVq-CHUbh8c9ySwvmlNQ5e5x11MVekywL_7vAtSPSGWsjlT-MFai9FPQk-3JRpT94f3zP8XbtpV4BX0Xz-7jpvrTnUx6db8uwO6hCBnMwNHGYcQhfYJqUTFjBzj_lPDwb8PoxqIVucJyTfZV4ew9icKZfVFV9dsz56iduhzse12rmjHchVbfINb/s1920/6.jpg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjr932ybBu96PAZIyUEt5CvE6jHPmquk0zB7bO4c90QeqcIJ5v8zusanYzqTMf5iop29mmRXHA0tWyT6BXQAt7eoySzUFhrn7e0jOR0CWI6nu76htPO8mbRH_loXyxSma_Io_xQMrBOiDdxQwwx-m8QESf1PoeTk4-e3pRHUr-Fs1YcxwUxZecPwAEEPKtV/s1920/7.jpg" alt="">
+ <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0qDCwyKl6Jzp-KBIg9rUEeiT0E3Xo18RsRhu-OgzgOFUb-eez2NMJ8A4XQ378Xp_i70Dj2JVJ3LqDJsUKs7q61bw6K03wnF9WfdcLE4d6HAwUi-SN6q_1ywb667kT2upejF9lF7X4Ju71tSoZ5EIY-sR9PGiHPC3trwAhWvSx-oaTEBIf50mGdzpEZRmA/s1920/12.jpg" alt="">
+    </div>
+
+    <div class="galeria-linha linha-direita">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgsCFwfflYa2hn7DyqMGBNjoenzikLJr6HmB6eVuOiwNeTBoNbBWnd5ywJFVz75xwJNGymO0bei-5WexAMgzh8yUsajI3duntL4A8hK9ozCT6pw_mCI2eKFyXIDYbF3xrpLkNaJ_o_jLUysJCbW1h2mGCT9ysjCSc4g9g7MjDbhOQgBIrpAFvVsUSXYqi6Y/s1600/Design%20sem%20nome.jpg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCcFoSBxtIKvBZ0ApQqkZLwPiohVd7EFAh1vvT-O95ApAyF_6hL7vIDgykmRMm5E1T07TtMkQkU1hhodNE7vXoQuJYL1yYTJuXsYUykkgKTh42khEF-vrgxx0m73wJybCzY0Oz5xZZY5FEiaS9ZhRn8w6XnetQkhjg2zgT4B2r5KX4aZ5ZkeG3X4ly6GqC/s4032/IMG_4371.jpeg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPdTxvP0FzxlTiaQocfFrFibVhZzAfhsQfPbHT6E_s8O5Z2pGxJRMfQrgQ7WT1pzxbeROYbKD4f_NQZIJxJ9tJb_3amDctEGrSSO1ekN4dPJy-J9cjFXj21vj-78sdQPru2ROLzcjb72AZ8H0D4StJcG_d8hZe7vF_8tTUDo5bmbTvx6PxG5pCuNS9Y7Ds/s4032/IMG_4366.jpeg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhC2c-ooDWtZw2BwW9mn6b227E1GmNmV4Dw2uui2vhrv5R7zISY09Mw_cb2uVt7kLSJ_g-NVd3GXif6WKhpyoq4hNsr85wOUoNe_yQ0rHQvXE2R7e-pL3FagmQ_hMfVqN1dCip9H51pj29577r2ml1KDhMlTvYroyWRhpb-wAW8PxcfkO6hzbBhI2UEMMZq/s1600/4fd904ab-fe34-48ca-a4e7-5878c6510d50.jpeg" alt="">
+
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgsCFwfflYa2hn7DyqMGBNjoenzikLJr6HmB6eVuOiwNeTBoNbBWnd5ywJFVz75xwJNGymO0bei-5WexAMgzh8yUsajI3duntL4A8hK9ozCT6pw_mCI2eKFyXIDYbF3xrpLkNaJ_o_jLUysJCbW1h2mGCT9ysjCSc4g9g7MjDbhOQgBIrpAFvVsUSXYqi6Y/s1600/Design%20sem%20nome.jpg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCcFoSBxtIKvBZ0ApQqkZLwPiohVd7EFAh1vvT-O95ApAyF_6hL7vIDgykmRMm5E1T07TtMkQkU1hhodNE7vXoQuJYL1yYTJuXsYUykkgKTh42khEF-vrgxx0m73wJybCzY0Oz5xZZY5FEiaS9ZhRn8w6XnetQkhjg2zgT4B2r5KX4aZ5ZkeG3X4ly6GqC/s4032/IMG_4371.jpeg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPdTxvP0FzxlTiaQocfFrFibVhZzAfhsQfPbHT6E_s8O5Z2pGxJRMfQrgQ7WT1pzxbeROYbKD4f_NQZIJxJ9tJb_3amDctEGrSSO1ekN4dPJy-J9cjFXj21vj-78sdQPru2ROLzcjb72AZ8H0D4StJcG_d8hZe7vF_8tTUDo5bmbTvx6PxG5pCuNS9Y7Ds/s4032/IMG_4366.jpeg" alt="">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhC2c-ooDWtZw2BwW9mn6b227E1GmNmV4Dw2uui2vhrv5R7zISY09Mw_cb2uVt7kLSJ_g-NVd3GXif6WKhpyoq4hNsr85wOUoNe_yQ0rHQvXE2R7e-pL3FagmQ_hMfVqN1dCip9H51pj29577r2ml1KDhMlTvYroyWRhpb-wAW8PxcfkO6hzbBhI2UEMMZq/s1600/4fd904ab-fe34-48ca-a4e7-5878c6510d50.jpeg" alt="">
+    </div>
   </section>
 
   <footer>
