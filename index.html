@@ -209,7 +209,8 @@
 
     /* BOTÕES MENU */
     .btn-menu-bolos,
-    .btn-menu-tabuas{
+    .btn-menu-tabuas,
+    .btn-menu-cardapio{
       position: absolute;
       right: 12px;
       z-index: 10001;
@@ -231,8 +232,13 @@
       top: 60px;
     }
 
+    .btn-menu-cardapio{
+      top: 108px;
+    }
+
     .btn-menu-bolos:hover,
-    .btn-menu-tabuas:hover{
+    .btn-menu-tabuas:hover,
+    .btn-menu-cardapio:hover{
       background: #002244;
       color: #ffffff;
     }
@@ -247,6 +253,13 @@
 
       .btn-menu-tabuas{
         top: 50px;
+        right: 8px;
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+
+      .btn-menu-cardapio{
+        top: 92px;
         right: 8px;
         padding: 8px 10px;
         font-size: 13px;
@@ -320,6 +333,11 @@
     <!-- BOTÃO MENU DE TÁBUAS -->
     <button class="btn-menu-tabuas" type="button" onclick="abrirMenuTabuas()">
       Menu de Tábuas
+    </button>
+
+    <!-- BOTÃO NOVO MENU DE CARDÁPIO -->
+    <button class="btn-menu-cardapio" type="button" onclick="abrirMenuCardapio()">
+      Menu de Cardápio
     </button>
 
     <div class="faixa faixa-branca"></div>
@@ -452,6 +470,10 @@
 
     function abrirMenuTabuas(){
       window.location.href = "menu-de-tabuas/";
+    }
+
+    function abrirMenuCardapio(){
+      window.location.href = "menu-de-cardapio/";
     }
 
     const imagens = [
