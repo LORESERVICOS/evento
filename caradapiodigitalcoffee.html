@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardápio Coffee Break | Lore Serviços</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Montserrat,Arial,sans-serif;background:#efefef;color:#1f2937;line-height:1.4}
+    .hero{background:#40a9eb;min-height:320px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:40px 20px;text-align:center}
+    .hero::before{content:"";position:absolute;left:-100px;bottom:-40px;width:300px;height:300px;background:url('1.jpg') center/contain no-repeat;opacity:.9;filter:drop-shadow(0 20px 24px rgba(0,0,0,.2))}
+    .hero::after{content:"";position:absolute;right:-80px;top:-20px;width:300px;height:300px;background:url('1.jpg') center/contain no-repeat;transform:scaleX(-1) rotate(-12deg);opacity:.55;filter:drop-shadow(0 20px 24px rgba(0,0,0,.2))}
+    .hero-content{position:relative;z-index:2;max-width:760px}
+    .logo{font-size:18px;font-weight:700;letter-spacing:3px;margin-bottom:12px;color:#fff}
+    .hero h1{font-size:clamp(38px,7vw,82px);font-weight:300;line-height:.98;color:#fff}
+    .hero h1 span{display:block;font-family:Caveat,cursive;font-size:clamp(50px,9vw,112px);font-weight:700;color:#163a5b;margin-top:-6px}
+    .wrap{max-width:1200px;margin:0 auto;padding:28px 18px 60px}
+    .top-controls{background:#fff;border-radius:22px;padding:20px;box-shadow:0 10px 24px rgba(0,0,0,.07);margin-top:-48px;position:relative;z-index:4}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#555}
+    .field select,.field input,.field textarea{width:100%;padding:12px 14px;border:1px solid #d6d6d6;border-radius:12px;font-size:15px;background:#fff}
+    .section{margin-top:26px;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.06)}
+    .section.hidden{display:none}
+    .section-title{background:#2f3e52;color:#fff;padding:18px 28px;font-family:Caveat,cursive;font-size:38px;letter-spacing:1px}
+    .section-subtitle{display:block;font-size:12px;font-family:Montserrat,Arial,sans-serif;font-weight:600;opacity:.92;margin-top:6px;line-height:1.5}
+    .section-body{display:grid;grid-template-columns:340px 1fr;gap:24px;padding:24px}
+    .board-image{width:100%;height:100%;min-height:260px;border-radius:18px;object-fit:cover;background:#ddd}
+    .board-image.coquetel-ajustada{object-fit:cover;background:#ddd;padding:0}
+    .options h3{font-size:18px;margin-bottom:8px}
+    .options p.note{font-size:13px;color:#6b7280;margin-bottom:14px}
+    .option-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .item-card{border:1px solid #d8dde6;border-radius:18px;padding:12px;background:#fff;transition:.18s;cursor:pointer;display:flex;align-items:flex-start;gap:12px;position:relative}
+    .item-card:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.08)}
+    .item-card.active{border:2px solid #40a9eb;background:#f2fbff}
+    .item-card input{margin-top:4px;width:18px;height:18px;accent-color:#40a9eb;cursor:pointer}
+    .item-thumb{width:52px;height:52px;border-radius:12px;object-fit:cover;flex:none;border:1px solid #e4e4e4}
+    .item-name{font-weight:700;font-size:14px;color:#222}
+    .item-meta{font-size:12px;color:#6b7280;margin-top:3px}
+    .special-box{margin:14px 0 18px;padding:14px;border:1px dashed #9bcff4;background:#f5fbff;border-radius:18px}
+    .special-box h4{font-size:15px;margin-bottom:10px;color:#214e78}
+    .special-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .extra-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:26px}
+    .box,.summary,.selected-gallery,.rules-box{background:#fff;border-radius:22px;padding:20px;box-shadow:0 10px 24px rgba(0,0,0,.06)}
+    .box h3,.summary h3,.selected-gallery h3,.rules-box h3{margin-bottom:12px;font-size:20px}
+    .choice-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .choice{border:1px solid #ddd;border-radius:14px;padding:12px;cursor:pointer;text-align:center;background:#fafafa;font-size:14px;transition:.18s}
+    .choice.active{background:#f2fbff;border:2px solid #40a9eb}
+    .summary{margin-top:26px}
+    .summary-box{background:#f7f7f7;border-radius:16px;padding:16px;min-height:120px}
+    .summary-box.vazio{display:none}
+    .btn{margin-top:16px;width:100%;padding:14px;border:none;border-radius:14px;background:#40a9eb;color:#fff;font-size:16px;font-weight:700;cursor:pointer}
+    .btn:hover{filter:brightness(.95)}
+    .btn-secondary{background:#163a5b}
+    .btn-hidden{display:none}
+    .selected-gallery{margin-top:20px}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .gallery-card{border:1px solid #e5e7eb;border-radius:18px;overflow:hidden;background:#fff}
+    .gallery-card img{width:100%;height:120px;object-fit:cover;display:block}
+    .gallery-card div{padding:10px 12px;font-size:13px;font-weight:700}
+    .muted{color:#6b7280;font-size:14px}
+    .rule-list{padding-left:18px;color:#475569}
+    .rule-list li{margin:8px 0}
+    .alert{margin-top:12px;padding:12px 14px;background:#fff7ed;color:#9a3412;border:1px solid #fdba74;border-radius:14px;font-size:14px}
+    .ok{margin-top:12px;padding:12px 14px;background:#ecfdf5;color:#166534;border:1px solid #86efac;border-radius:14px;font-size:14px}
+    @media (max-width:1000px){
+      .grid,.extra-grid,.choice-row,.section-body,.option-list,.gallery-grid,.special-options{grid-template-columns:1fr}
+      .hero::before,.hero::after{width:210px;height:210px;opacity:.22}
+      .hero{min-height:260px}
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <div class="logo">LORE SERVIÇOS</div>
+      <h1>CARDÁPIO<span></span></h1>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="top-controls">
+      <div class="grid">
+        <div class="field">
+          <label>Tipo de coffee</label>
+          <select id="tipoEvento" onchange="mudarTipoEvento()">
+            <option>Coffee-break Simples</option>
+            <option>Coffee-break tipo Brunch</option>
+            <option>Coquetel</option>
+            <option>Almoço/Jantar Estilo Finger-Food</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Responsável pelo evento</label>
+          <input type="text" id="responsavelEvento" placeholder="Digite o nome do responsável">
+        </div>
+        <div class="field">
+          <label>Quantidade de pessoas</label>
+          <input type="number" id="pessoas" value="45" min="1" onchange="atualizarRegrasDinamicas()">
+        </div>
+      </div>
+    </section>
+
+    <div id="sectionsContainer"></div>
+
+    <div class="extra-grid">
+      <section class="box">
+        <h3>Tipo de louça</h3>
+        <div class="choice-row" id="loucaGroup"></div>
+      </section>
+
+      <section class="box">
+        <h3>Copos e xícaras</h3>
+        <div class="choice-row" id="coposGroup"></div>
+      </section>
+    </div>
+
+    <section class="summary">
+      <h3>Resumo do pedido</h3>
+      <div class="field" style="margin-bottom:16px;">
+        <label for="observacoesEvento">Observações do evento</label>
+        <textarea id="observacoesEvento" placeholder="Digite aqui alguma observação para o evento..." style="min-height:110px;font-family:Montserrat,Arial,sans-serif;resize:vertical;"></textarea>
+      </div>
+      <div class="summary-box vazio" id="resumo"></div>
+      <button class="btn" id="btnGerarResumo" onclick="gerarResumo()">Gerar resumo</button>
+      <div id="validacaoResumo"></div>
+    </section>
+
+    <section class="selected-gallery">
+      <h3>Itens selecionados para o coffee</h3>
+      <div id="galleryContent" class="muted">Após gerar o resumo, os cards com imagens dos itens selecionados aparecerão aqui.</div>
+      <button class="btn btn-secondary btn-hidden" id="btnEnviarPedido" onclick="enviarPedido()">Enviar o pedido</button>
+    </section>
+
+    <section class="rules-box" style="margin-top:26px;">
+      <h3>Regras do cardápio</h3>
+      <div id="regrasDinamicas"></div>
+    </section>
+  </main>
+
+  <script>
+    const IMAGEM_PADRAO = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiq7pAr4J5HbynpX1CCb7MVdvGElw3z5L7Ur71ewRaVIT7B7QtihUdryvxNIWq1pYDhhGBwJ8QtA4QCO8KmL-aQwJYNAmShxn1l13rzIqvjcCPE00eWTxmZqqLrWkgbsKm1ww5Sfg5RJ42Ap-hpmLovfVS-6GkgjAbxGYRZTuQl0jkaCYpvP5BmUN4-UUIr/s500/C%C3%B3pia%20de%20C%C3%B3pia%20de%20C%C3%B3pia%20de%20lore%20servi%C3%A7os.png';
+
+    const imagemSecao = {
+      'Coffee-break Simples': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjcre17DLHzxIz4ytAkHQYS5j8qt8lXNHMPmezRVngaIy1btg5OXkyTouFpzVjoJuM7vr6Gf_lpP5_Ji-DEPFC-A25p7BOZ0djsXkHJEgqfGWXM9aKp4oSgI7aS_3xFmsWPRiCtRgFDJUv2TOOWAuK0Xe37uh2QS7g7Ap6dl-eMu8jA7XN_RjxDn9rh3L7/s4032/IMG_5415.jpg',
+      'Coffee-break tipo Brunch': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhC2c-ooDWtZw2BwW9mn6b227E1GmNmV4Dw2uui2vhrv5R7zISY09Mw_cb2uVt7kLSJ_g-NVd3GXif6WKhpyoq4hNsr85wOUoNe_yQ0rHQvXE2R7e-pL3FagmQ_hMfVqN1dCip9H51pj29577r2ml1KDhMlTvYroyWRhpb-wAW8PxcfkO6hzbBhI2UEMMZq/s1600/4fd904ab-fe34-48ca-a4e7-5878c6510d50.jpeg',
+      'Coquetel': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgudDYv_VNXcCfW7VMbKt6RoAj6ckn4ec_d8He5xThHmWdfolpPAmDbsAP-ktN0edDI8VL_14xwDmRaX7fPjw6waVUyjbVDoYv93czHJ04pLo2kmE1fVUrcXAYTqM9FhBELcJfRO_n6byBNv_kQhYO2yDVJuaJJHYZmm44x26t6z3JOzroYFqpE931i5Y8n/s3468/IMG_6091%20(2).jpg',
+      'Almoço/Jantar Estilo Finger-Food': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRVE4Dw6N5rQkzJKHqXNO3YEEI_bqxdhyphenhyphenIdTUTe9A4gApddyi97L8R60O7fYVs1ZNKtMyKC23gg0FJ5Qlbx2bydDUAzyz5I6y43sbK4Yx1WMgvHmJxtRbM1cionvIpvufsJY_h1_-G9j8BqKWs5OOvl_DgrdzZRv8d4f4BglhHNn8l9JE_yqKrhHe_GW4s/s1600/9d739145-5a06-46e6-bef0-0796863c2831.JPG'
+    };
+
+    const configuracoes = {
+      'Coffee-break Simples': {
+        observacao: 'Selecionar pão de queijo ou substituir por lanche de metro ou pão brioche + 3 bebidas. Para o Coffee-break Simples, considerar 1 bolo para cada 10 pessoas.',
+        loucas: ['Descartáveis'],
+        copos: ['Copos descartáveis'],
+        specialSubstitute: ['Mini pão de queijo','Lanche de metro','Pão brioche'],
+        items: ['Bolo Fubá','Bolo Chocolate','Bolo Banana','Bolo Cenoura','Bolo Maçã','Bolo Milho','Café amargo','Água','leite','leite achocolatado','Sucos','Refrigerantes']
+      },
+      'Coffee-break tipo Brunch': {
+        observacao: 'Salgados (4 tipos) / Doces (3 tipos) / Bebidas (até 4 tipos).',
+        loucas: ['Descartáveis','Louça','Inox'],
+        copos: ['Copos descartáveis','Xícaras de louça','Copos de vidro','Ramequim'],
+        items: ['Esfihas','Enroladinho presunto e queijo','Coxinha/Risoles/Bolinha queijo','Croissant','Torta de Abobrinha','Torta de presunto e queijo','Tortinha de morango','Tortinha de limão','Mini churros','Carolina doce de leite','Café amargo','água','leite','leite achocolatado','Suco natural polpa concentrada ou néctar','Refrigerantes']
+      },
+      'Coquetel': {
+        observacao: 'Salgados até 4 tipos / Minilanches até 3 / Tábua 2 tipos / Até 3 tipos de doces ou 2 doces e 1 fruta.',
+        loucas: ['Louça','Inox'],
+        copos: ['Xícaras de louça','Copos de vidro','Taças de champanhe','Descartáveis adicional','Ramequim'],
+        items: ['Esfihas','Enroladinho presunto e queijo','Coxinha/Risoles/Bolinha queijo','Croissant','Torta de Abobrinha','Torta de Presunto e Queijo','Mini Quiches','Mini Wraps','Canapés','Minilanches presunto e queijo','Minilanches Alho poró (Vegetariano)','Minilanches Peito de Perú','Minilanches Muçarela','Mini lanche em pão comum, integral ou de forma','Pão crocante baguete com geléia frutas','Torrada com Patê de Alho poró','Torrada com Patê de azeitonas','Tortinha de morango','Tortinha de limão','Mini churros','Carolina doce de leite','Docinhos variados: brigadeiro, beijinho','Biscoito tipo petit four ou Cookies','Mousses','Mini bomba','Bolo gelado','Sorvete','Frutas','Café amargo','água','Água aromatizada','Chá','leite','leite achocolatado','Suco natural polpa concentrada ou néctar','Refrigerantes']
+      },
+      'Almoço/Jantar Estilo Finger-Food': {
+        observacao: 'Até 2 tipos de pratos quentes / 1 tipo de salada / Até 2 tipos carnes / 1 tipo de salgado / Até 2 tipos de doces ou 1 doce e 1 fruta / Até 3 tipos de bebidas / Café sem açúcar.',
+        loucas: ['Louça','Inox'],
+        copos: ['Xícaras de louça','Copos de vidro','Descartáveis adicional','Ramequim'],
+        items: ['Massas','Caldos','Escondidinho','Risoto','Carne assada','Frango assado','Almondegas ao sugo','Linguiça','Salada verde','Salada mista','Salada de Maionese','Coxinha/Risoles/Bolinha queijo','Bolo doce','Tortinha de morango','Tortinha de limão','Mini churros','Carolina doce de leite','Docinhos variados: brigadeiro, beijinho','Biscoito tipo petit four ou cookies.','Mousses','Mini bomba','Sorvete','Salada de frutas','Água','Água aromatizada','Suco natural em polpa, polpa concentrada ou néctar','Refrigerante','Café amargo']
+      }
+    };
+
+    const categorias = {
+      salgados: ['Esfihas','Enroladinho presunto e queijo','Coxinha/Risoles/Bolinha queijo','Croissant','Torta de Abobrinha','Torta de presunto e queijo','Torta de Presunto e Queijo','Mini Quiches','Mini Wraps','Canapés'],
+      minilanches: ['Minilanches presunto e queijo','Minilanches Alho poró (Vegetariano)','Minilanches Peito de Perú','Minilanches Muçarela','Mini lanche em pão comum, integral ou de forma'],
+      tabua: ['Pão crocante baguete com geléia frutas','Torrada com Patê de Alho poró','Torrada com Patê de azeitonas'],
+      doces: ['Bolo Fubá','Bolo Chocolate','Bolo Banana','Bolo Cenoura','Bolo Maçã','Bolo Milho','Tortinha de morango','Tortinha de limão','Mini churros','Carolina doce de leite','Docinhos variados: brigadeiro, beijinho','Biscoito tipo petit four ou Cookies','Biscoito tipo petit four ou cookies.','Mousses','Mini bomba','Bolo gelado','Sorvete','Bolo doce'],
+      frutas: ['Frutas','Salada de frutas'],
+      bebidas: ['Café amargo','Água','água','Água aromatizada','leite','leite achocolatado','Sucos','Suco natural polpa concentrada ou néctar','Suco natural em polpa, polpa concentrada ou néctar','Refrigerantes','Refrigerante','Chá'],
+      pratosQuentes: ['Massas','Caldos','Escondidinho','Risoto'],
+      carnes: ['Carne assada','Frango assado','Almondegas ao sugo','Linguiça'],
+      saladas: ['Salada verde','Salada mista','Salada de Maionese']
+    };
+
+    const pedido = {
+      louca: [],
+      copos: [],
+      itens: {
+        'Coffee-break Simples': [],
+        'Coffee-break tipo Brunch': [],
+        'Coquetel': [],
+        'Almoço/Jantar Estilo Finger-Food': []
+      },
+      substituicaoSimples: 'Mini pão de queijo'
+    };
+
+    function slug(texto){
+      return texto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+    }
+
+    function getCategoriaVisual(item, secao){
+      const nome = item.toLowerCase();
+
+      const bebidas = [
+        'café amargo','água','agua','água aromatizada','leite','leite achocolatado',
+        'sucos','suco natural polpa concentrada ou néctar','suco natural polpa concentrada ou nectar',
+        'suco natural em polpa, polpa concentrada ou néctar','refrigerantes','refrigerante','chá'
+      ];
+
+      const doces = [
+        'bolo fubá','bolo chocolate','bolo banana','bolo cenoura','bolo maçã','bolo milho',
+        'tortinha de morango','tortinha de limão','mini churros','carolina doce de leite',
+        'docinhos variados: brigadeiro, beijinho','biscoito tipo petit four ou cookies',
+        'biscoito tipo petit four ou cookies.','mousses','mini bomba','bolo gelado','sorvete','bolo doce'
+      ];
+
+      const aperitivos = [
+        'pão crocante baguete com geléia frutas',
+        'torrada com patê de alho poró',
+        'torrada com paté de alho poró',
+        'torrada com patê de azeitonas'
+      ];
+
+      if (bebidas.includes(nome)) return 'bebidas';
+      if (doces.includes(nome)) return 'doces';
+      if (secao === 'Coquetel' && aperitivos.includes(nome)) return 'aperitivos';
+      return 'salgados';
+    }
+
+    function getTituloCategoria(secao, categoria){
+      if (secao === 'Coffee-break Simples') {
+        if (categoria === 'doces') return 'Bolos (1 a cada 10 pessoas)';
+        if (categoria === 'bebidas') return 'Bebidas (3 tipos)';
+      }
+
+      if (secao === 'Coffee-break tipo Brunch') {
+        if (categoria === 'salgados') return 'Salgados (4 tipos)';
+        if (categoria === 'doces') return 'Doces (3 tipos)';
+        if (categoria === 'bebidas') return 'Bebidas (até 4 tipos)';
+      }
+
+      if (secao === 'Coquetel') {
+        if (categoria === 'salgados') return 'Salgados (até 4 tipos)';
+        if (categoria === 'doces') return 'Doces (até 3 tipos ou 2 doces e 1 fruta)';
+        if (categoria === 'aperitivos') return 'Aperitivos (até 2 tipos)';
+        if (categoria === 'bebidas') return 'Bebidas';
+      }
+
+      if (secao === 'Almoço/Jantar Estilo Finger-Food') {
+        if (categoria === 'salgados') return 'Salgados';
+        if (categoria === 'doces') return 'Doces (até 2 tipos ou 1 doce e 1 fruta)';
+        if (categoria === 'bebidas') return 'Bebidas (até 3 tipos)';
+      }
+
+      return 'Selecione os itens desta categoria';
+    }
+
+    function getImageForItem(item){
+      const chave = item.toLowerCase().trim();
+      const mapa = {
+        'mini pão de queijo':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhudBa-HG0uXg45Q9I-RsCoGNLjQqQ2YKKYbBCvBmXNPNynKruuCBvaR2VR8x7tyWkZy-OAFT__DBSiXmcl9C1i8bwlreheqt9kxykYj9gU752T7W3rwdctVGCiYalJe7nMeoc5QnAzbXiZR1Y_-tT55Q0q2SvGPLNePEzQ4Y0GB9_XmcNv45W8Nr1nLbsU/s1536/P%C3%A3o%20de%20queijo%20fresquinho%20e%20dourado%20(1).png',
+        'lanche de metro':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3QztEZbOGe-Y48vfO1JALqaG8CO3A4sussaJ7L6JC_cpqhzC8JYeJxyqiezvQB9SmnYWw3t119ZOXwdedUYuyHi7yKJ9V3FC2HAh4Klvy5ZUhEnQXMYeWcciYF7zeioZiH1qQkp19hNsa6KssCM7I40rlROdjpvecE0En4yiCSmnQkU3IvUQrzBN2Gr9z/s1536/Lanches%20de%20metro%20fresquinhos%20e%20saborosos.png',
+        'pão brioche':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvCRJP6XNcjMwe0EIUUsreEXSU9uDLmzcwNMfQ_dGezucA7T1EKh6ts3JxOe5xjSZjNHckSX7lY8symuihYBejXIGstUMEe4PlrGR3ZQIgeBQ25wys-ffIt1AsB3QjarfS3NBFD9zCb4a03EDLPe2OfLQv3EBEEfN6w_PZIiZKCrSuhmTawYN4BwY1zRl-/s1536/Sandu%C3%ADches%20de%20brioche%20com%20presunto%20e%20queijo.png',
+        'bolo fubá':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIpY3iFkLKwc1l0nligF6mMw5BL5S0pGM67okTNeENOSefXbjiVz4ew8FotNCbKm0Vjroh2v6s9twr-eP5Aez3x5k5g1x5PpQO9SsXxqwJ_zxpQfTCDFCmJeTjRKIfdbnCy0-U8xOSJMBQliu3X96NdpxsiJHK6GeZGVEAU9oDEpdpU7UYVDA-BObpnI1D/s4032/bolo%20fub%C3%A1%201.jpg',
+        'bolo chocolate':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggeWxB9IUmKsPBXsp7JxaBHawzk0iY0WLmeuSpjNRhjTAO9CySPQ8KoOyHElryouGCZyE5CgfVGW7GGDv9nme1iWXvVMFJ6s-8bXYBx7dICvKBmYlCZNK3ATHLQXNKpEaP3oHkOy6qOVaOkBLgwPGQJSte1Jf1tuwbOphj_2lXq_6o8bTC3-FGTAGkOww6/s3024/bolo%20chocolate.png',
+        'bolo banana':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEirsmV9HN6TdHL-LpzaS6SFucdaxkoSZDG3yQ0dNiUYwYOcPrGNTkqUcJukTQ-gkFSH8CqsQMPTw1nyiCTdx7lwDZnETfLgD5KOIv3QThjxRh1FUykcL4KX50_gLRgE_G3KPNcGFEfSIRtbeSb47pvCyQe33NQ4RSthDm2Mo61brW-JzZxRu9FW9ey4FzxH/s3024/bolo%20banana%201.png',
+        'bolo cenoura':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3s3IEAdAtlI6JQODy0icCdKGEAYxT5QY97z-EYx3pg1iydpNSHJ8Koz8aD51Wbuv59mQ7vzGNfHiWvPb325uBSPpuaWIuCnRAjvdLYvyVfrd7KNzSy1W-_y8ZwRdYh5791fR6R3fYhigwWAMFSlEz2EEkViGyGQ9YmUUIcYd0nyxvupMwzu3tC_8TDnFY/s3024/bolo%20cenoura%201.png',
+        'bolo maçã':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0F3dOw0f8tksUcuihu7iJBYKdkn3RuuV-or7b9s5rG5oM0cfmqzu2quY9k_1V8x2TeZmFzb8YOC2wEesRV9YSlMniaOhc7wivWE1B7E5QZxIr2GxmNCGG1iW1BO-1_E9nVFsJ0uNt9S9YBCylgcBet7DoeQC2D3jYy0hkMPrvTDnRgn1_ISNysSmcjnkm/s3024/bolo%20ma%C3%A7a%201.png',
+        'bolo milho':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMRuyeaMy8rd276kSgyv6ATt_tNuj8WUKs2_W0oEctzDuDlEPHCthkn53-NuHZjw6wTJC79ga3t_gqY8QlgC2mw95MqZ7s0ubqFOpocIssIt7lldGhdRL9rk1RvHMDCATduRQX3hR2C6tU-0mEpUxG8eeJbaBEt-_Ic40LxGw7-3xE342pAoMni6JWOZlB/s4032/bolo%20de%20milho%201.jpg',
+        'esfihas':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj96-miiH-RDI7lOGkC-R1pRBQxzDKaDhM4zXDjbanU3RAtFc-6TV9sa7kvcdFgzmi3zGlnqJB6ERjfz_P6whtJwY_prZY_NxC0pxtPoXn6iIhmoFd-mha-25qVM1MXgAd-9ICIW3TecP08Ro9Uth4Yq0SxYLTRmyS31A8p4OYtWPSH1hBvJxIbfsr67cq5/s4032/IMG_3869.jpg',
+        'enroladinho presunto e queijo':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi50GAFHq4Dzwi8RIvOIFVssCzETrvp6Snq1x9b0-lGuPRCC4CL5gdrd7QAPLgbGzqHQ7IVFd6jpYKDR3XrWDFtrmJmdiUZvIhHfMVdGppeqjRqdUz15MXXCP7Gf7UdiCoi7Hsze_excN_TvqyUWt-WEUC4HHoBFsxkfW_tNdMT9JHrZiC8LjgahiUq3_Ns/s4032/IMG_4156.jpg',
+        'coxinha/risoles/bolinha queijo':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhNLWKvcWPxUG0V_cdMIPGDfkD5uCAsZBdGBT8ymEX0OhizknoUuwfiHIzHGmhvbOGbo6sFEKR4q2Kc8FDfHOPJqPnMiUBpONFzTxDXCgPwYdireI7VaOGxohab7yL48TCP8a2kfxF0RzM62bW62V7mJBn0QT5Pchs20Bv5ycRJWO7T_VZ8izwE-QekDsBw/s4032/IMG_4157.jpg',
+        'croissant':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4pMxKVJcvZvQvSXO1kGUDO7WeF1RoqineryFvNwVciZOtOE1uizkFlJn-YnKL1sXwMAOehqW80mEHRsv3X3sNf_GZ9aNQ6C_lskOJtdpyhjy-o9KAor0BG_qVN81Kn_ADGnkGHZwnBMJFNNpKMmu8HMe78RSlzRKF1CMrasy9sRDgGMEZsJ1cNRr5mTd-/s4032/IMG_3604%20(1).jpg',
+        'torta de abobrinha':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcjz23IJT1X7bdDozexUFVWxlPdUT_wAOSfZyYz-PKqIbYC9ON1IeY_cbmYoK9SnaFHsHx85QeRxwq947t_SOrBPm38dYSVyBQpNpRR_2X54o1ixa4Gd-cnhwuzfVG5KvuNwbd796ZxMCqA1fHup-LS6W_x9LGbzT4DvyRpDtvwUyEuRuxrqgqTO0TWOCh/s1536/6D34A7F8-EB7E-4CAE-92FA-86E04C96F80E.png',
+        'tortinha de morango':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBgVdvHP-OuAXZvMULanmfIlz2pgWKikcRr2OLBcVIcZAK5ekNbW0fImipItdlCkaS0vobRpnA8WGkA2m9I0UxRlldgIcxhSg4l4da8SynANyFB1wMH1oP1hqn6g21jc1bSxxec3BWVkco-htI6-WxGth6NZDObkJVLXNMZxdRLcrnmYTeD2CuchWYcS6I/s1536/Tartes%20de%20morango%20com%20nozes.png',
+        'tortinha de limão':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhH2U_YxMdhMqqVFY322kW6lxAzOhmvK9wM28pOQT0HFt6KoRRv1LX8LuH44E8lC_WqEAgTCKJwVerwE1dHUUZv31-rYiB53-zHq3NKj613JltVZaKZ71q_QZqso3_7Csy92f6xXM5FzDK3bmudp6bR-O23ln_xtgMyZk9WGZx4gnTNbqo-xTtRVp41r7sp/s1536/Tartes%20de%20lim%C3%A3o%20com%20merengue%20e%20lim%C3%A3o.png',
+        'mini churros':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiSYlnWXxnfEHYbR5xBTcmmad9XmxY1tF8wp2e8cqWuSR4MoMvHWMdERIksgX6vmGySrbeq6YMZsheAAf03_VM3nAu6jmazgPnnrhBCegGgLar_mryya_jz1a90rhwt846iU8trXFskVccevfGNKGG4jLFDVX-rPY2FmtJgV-wpIThnDOEZaKr6kwEQ8sJp/s4032/IMG_4204.jpeg',
+        'carolina doce de leite':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1yrfvT1T7mjzsVs_p17SyLIulXtoTklB5BJ1OW3SkELbbO2ZTwzyD82xUiSzTUfyvw01qE8pN0D4iMMGVy-VPvH5YfBIJ2QCYxdKCl_6En48qvTct9IedYP4XLF57IMOCgLScoa8UV8khsKQnK-5WS67Rq4K8m_gTAryOhCR9YwetqMZPdVlxIW88sZ9C/s1536/Carolina%20Doce%20de%20leite%20gourmet.png',
+        'café amargo':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyabVNndo5AXM9oCbk3PdEIgVpBqpKHOidJhG7NoPQZoRGWKuj1ogICTMKrQPc99Mds7bFogoKz7XgEhO7lPfHIXJnqeWbBpYtPvvzpCOf93-47qErgmvMHJJu-JJk59eMqsQlD5J2WBLXqCyFN-IbwWKZGtksGTu_wGnHD4Wueyy2tploWXigzQ-PWJhh/s4032/IMG_4647.jpeg',
+        'água':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiq7pAr4J5HbynpX1CCb7MVdvGElw3z5L7Ur71ewRaVIT7B7QtihUdryvxNIWq1pYDhhGBwJ8QtA4QCO8KmL-aQwJYNAmShxn1l13rzIqvjcCPE00eWTxmZqqLrWkgbsKm1ww5Sfg5RJ42Ap-hpmLovfVS-6GkgjAbxGYRZTuQl0jkaCYpvP5BmUN4-UUIr/s500/C%C3%B3pia%20de%20C%C3%B3pia%20de%20C%C3%B3pia%20de%20lore%20servi%C3%A7os.png',
+        'água aromatizada':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQ-488AE7MN9SH56FbflAa44kloTiQDuuUFVh5oMn9YyMlDUPNldyjiTJ4RgSLr3ouacegbYtDSADpGcd_xviArfGRfOLRpaVPUUumbnh0McwrLOq89hX1_BQyIBlV8w0aDsyrn79fdEPC-CWT_LI1lb_9tZ23AFuiGWbJecPhyphenhyphenN8ZhzFCXEZk2-GvDgqI/s1536/Dispenser%20de%20%C3%A1gua%20saborizada%20de%20laranja.png',
+        'sucos':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgY-2DhfoPf1gC6LWo8nJRZfXrsSyK7IYdDluQqnNa_EasZ5K4WCquQwzgatdSFumnaqCy_6ZEYLf-GFTqyl_JYWjfQgjLlHlUVWqvrjwQ99KrxLMdwsDVuKxxxqBU-xviyZKflgE58LGRmQWXC3Jqne2E1zrF4NwIEWrbImlJ5QbzKhhXunXXYfhMv-Z3W/s4032/IMG_6083.jpg',
+        'suco natural polpa concentrada ou néctar':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgY-2DhfoPf1gC6LWo8nJRZfXrsSyK7IYdDluQqnNa_EasZ5K4WCquQwzgatdSFumnaqCy_6ZEYLf-GFTqyl_JYWjfQgjLlHlUVWqvrjwQ99KrxLMdwsDVuKxxxqBU-xviyZKflgE58LGRmQWXC3Jqne2E1zrF4NwIEWrbImlJ5QbzKhhXunXXYfhMv-Z3W/s4032/IMG_6083.jpg',
+        'suco natural polpa concentrada ou nectar':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgY-2DhfoPf1gC6LWo8nJRZfXrsSyK7IYdDluQqnNa_EasZ5K4WCquQwzgatdSFumnaqCy_6ZEYLf-GFTqyl_JYWjfQgjLlHlUVWqvrjwQ99KrxLMdwsDVuKxxxqBU-xviyZKflgE58LGRmQWXC3Jqne2E1zrF4NwIEWrbImlJ5QbzKhhXunXXYfhMv-Z3W/s4032/IMG_6083.jpg',
+        'suco natural em polpa, polpa concentrada ou néctar':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgY-2DhfoPf1gC6LWo8nJRZfXrsSyK7IYdDluQqnNa_EasZ5K4WCquQwzgatdSFumnaqCy_6ZEYLf-GFTqyl_JYWjfQgjLlHlUVWqvrjwQ99KrxLMdwsDVuKxxxqBU-xviyZKflgE58LGRmQWXC3Jqne2E1zrF4NwIEWrbImlJ5QbzKhhXunXXYfhMv-Z3W/s4032/IMG_6083.jpg',
+        'refrigerantes':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiB70y_lLtCM8JqeaxCzetEBS9UDGnsoDBQrGcsvbBWy3xiPiJ-y1kx5aLpGleFazFIkBavFZyb3lWsCjGK1VHXvu_1r1kgacXd8AZ9K2wCFxGrsZncwjhet3k73xUlRc1t4fUS6ZpR-jIyTun9GCBnq9DY0aXvFIBv5ngievdkOmfy1DXhdbVpr-VLkxxQ/s4032/IMG_4386.jpeg',
+        'refrigerante':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiB70y_lLtCM8JqeaxCzetEBS9UDGnsoDBQrGcsvbBWy3xiPiJ-y1kx5aLpGleFazFIkBavFZyb3lWsCjGK1VHXvu_1r1kgacXd8AZ9K2wCFxGrsZncwjhet3k73xUlRc1t4fUS6ZpR-jIyTun9GCBnq9DY0aXvFIBv5ngievdkOmfy1DXhdbVpr-VLkxxQ/s4032/IMG_4386.jpeg',
+        'mini quiches':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj-q-1T2wZAYYta2LS6jb-OATwIulhu_8yoCBuhwkhAV-x1NlgF0tySOLLZ7_75wlLAhMlzpW6ZTXqVQrPWEimwVajXcsxlpcK3XP9xesn6yPw-Ndby8DbAs0ir_TD1SyCdv1z_Uk-h-wm_J3SFhmroZ2v7_j8Cx9flETxt3iXYqFc4cX2zDFNFNxTpdFDz/s1536/Mini-quiches%20de%20abobrinha%20em%20prato%20elegante.png',
+        'canapés':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhv3iXhCSyNA-NvGs0EOZuiFS08Ae8IMCzvb-M-dppkoB1xB4PyAsBfXrrvrfaMIdxd_ePUsTmc_3ZR1dPWyxWre0x8rnmY2ezmEGD1vhnopquPFgQXEXVi8vrzdtaRPW48jYwl4seFt5dm-EyamW_Dcd7ohi7jQswhBxZMZNQe44zL_6MkDdITiRgnzfhu/s4032/IMG_4374.jpeg',
+        'minilanches presunto e queijo':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvCRJP6XNcjMwe0EIUUsreEXSU9uDLmzcwNMfQ_dGezucA7T1EKh6ts3JxOe5xjSZjNHckSX7lY8symuihYBejXIGstUMEe4PlrGR3ZQIgeBQ25wys-ffIt1AsB3QjarfS3NBFD9zCb4a03EDLPe2OfLQv3EBEEfN6w_PZIiZKCrSuhmTawYN4BwY1zRl-/s1536/Sandu%C3%ADches%20de%20brioche%20com%20presunto%20e%20queijo.png',
+        'minilanches alho poró (vegetariano)':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvCRJP6XNcjMwe0EIUUsreEXSU9uDLmzcwNMfQ_dGezucA7T1EKh6ts3JxOe5xjSZjNHckSX7lY8symuihYBejXIGstUMEe4PlrGR3ZQIgeBQ25wys-ffIt1AsB3QjarfS3NBFD9zCb4a03EDLPe2OfLQv3EBEEfN6w_PZIiZKCrSuhmTawYN4BwY1zRl-/s1536/Sandu%C3%ADches%20de%20brioche%20com%20presunto%20e%20queijo.png',
+        'minilanches peito de perú':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXwqkGigvHlLQEANPAD3P7b_mLWPx-E1XUyYmY3Fs8Qw5YeXD07VMq9r4IWQdvEz5ZZDEBxhOU7fOjla8fIvoOVaXuPhynI2ateBr2tKrMDTylCqNJR7VgQChZqarViGjI-0sisxIlc-VJHIGKUNo5u8wbE3UcZdY44lmuYGleikrY2B_jT7G982DAxS43/s3024/IMG_2926.jpg',
+        'minilanches muçarela':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvCRJP6XNcjMwe0EIUUsreEXSU9uDLmzcwNMfQ_dGezucA7T1EKh6ts3JxOe5xjSZjNHckSX7lY8symuihYBejXIGstUMEe4PlrGR3ZQIgeBQ25wys-ffIt1AsB3QjarfS3NBFD9zCb4a03EDLPe2OfLQv3EBEEfN6w_PZIiZKCrSuhmTawYN4BwY1zRl-/s1536/Sandu%C3%ADches%20de%20brioche%20com%20presunto%20e%20queijo.png',
+        'mini lanche em pão comum, integral ou de forma':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh27LThGmld2-D_2o7ahdMCjXwqk2TQhS6O0EWRgXuTu5Oo0-IgGkOb1N-LiOU-0UtyIZqagB77Or5G1cy_eBSHyFXo2b5WHXUBsgk6s1gH5cJNz2rRtNXGlyOBgVKuCCSQxTFzckahGq_sOqb0sE9fxlg7g7Y6BvDyAeasX8SZ1NFiBt-7daK4wUp2ZJEx/s4032/IMG_4375.jpeg',
+        'pão crocante baguete com geléia frutas':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqwjB9SFUbCq3I_f9PArc-Uv8pzPplLpHbE9jpxFPsqa5JrkZVeKV-XDwlhg6So7yLqDk3MkqAh7zdOfo37F9MclrKdwq-DtWV7ErADgmAsxRT3xAaPGMU_bPnRuwqa74zv3XUil4e7xsr6qPqLXHYNUo_x9Jas1pyEdJpnZ1okKohlt8t7z_ea_jK4aKi/s4032/IMG_4383.jpg',
+        'torrada com patê de alho poró':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqwjB9SFUbCq3I_f9PArc-Uv8pzPplLpHbE9jpxFPsqa5JrkZVeKV-XDwlhg6So7yLqDk3MkqAh7zdOfo37F9MclrKdwq-DtWV7ErADgmAsxRT3xAaPGMU_bPnRuwqa74zv3XUil4e7xsr6qPqLXHYNUo_x9Jas1pyEdJpnZ1okKohlt8t7z_ea_jK4aKi/s4032/IMG_4383.jpg',
+        'torrada com paté de alho poró':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqwjB9SFUbCq3I_f9PArc-Uv8pzPplLpHbE9jpxFPsqa5JrkZVeKV-XDwlhg6So7yLqDk3MkqAh7zdOfo37F9MclrKdwq-DtWV7ErADgmAsxRT3xAaPGMU_bPnRuwqa74zv3XUil4e7xsr6qPqLXHYNUo_x9Jas1pyEdJpnZ1okKohlt8t7z_ea_jK4aKi/s4032/IMG_4383.jpg',
+        'torrada com patê de azeitonas':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqwjB9SFUbCq3I_f9PArc-Uv8pzPplLpHbE9jpxFPsqa5JrkZVeKV-XDwlhg6So7yLqDk3MkqAh7zdOfo37F9MclrKdwq-DtWV7ErADgmAsxRT3xAaPGMU_bPnRuwqa74zv3XUil4e7xsr6qPqLXHYNUo_x9Jas1pyEdJpnZ1okKohlt8t7z_ea_jK4aKi/s4032/IMG_4383.jpg',
+        'docinhos variados: brigadeiro, beijinho':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6QzHGgG-J_3RsKHtMsQsoSCNE-HnaVsOJdb5qSbf1rZLeAsQbgn7j0SjSmJ2C5xeHrRgHDE2Gx-aBM-1sJv2R48hiftO-0lL4LSlg_9tGeqcbXcT4oPtRcjcFohqaR3PMLstJsjgwSRINZiv95mVyAdtsmAG4Vh6rNvD-hNuVvfcbegY4AYbGTUIDrUTb/s4032/IMG_4218.jpeg',
+        'mousses':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVxk04jS2gDjqRFxphOhyphenhyphenKcDgpktyYCBtWV_uRZ4Vn679VZ3BcG98A2Vp4RYgYhEM3qYVen6t_Rw8qAA1zpagzMSQkcNW63lw-6cPnwp00szQjiZlPg_ncpPXrtckXX83A7XXR5XpwoA8UkYTXsbylMAHJ_R8nXeoACWi3BKKtNTR30JkmomzE1tWB7TSD/s4032/IMG_4368%20(2).jpeg',
+        'mini bomba':'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4QKAqfKgSDl5G6Nqzx523NOfMfv85n8E_9sJtyHxMAWUzFlqRzqadWok7S95uuv_sO7Mxz21e2Uj2VBWUNWonpe8ZkjMckE3iLOWPoRxq5Fv9X0XV5Hb1VxHdYrT8iKc8kZY1ADVci_dRQrbjfVyJaIhEte-dQLFQjdVHwnV4ESzyI8cuKkjU1x6rmlkW/s1536/Mini%20%C3%A9clairs%20com%20doce%20de%20leite.png'
+      };
+      return mapa[chave] || IMAGEM_PADRAO;
+    }
+
+    function montarSecoes(){
+      const container = document.getElementById('sectionsContainer');
+
+      container.innerHTML = Object.keys(configuracoes).map(secao => {
+        const cfg = configuracoes[secao];
+
+        const substituicaoHtml = secao === 'Coffee-break Simples' ? `
+          <div class="special-box">
+            <h4>Escolha 1 opção principal</h4>
+            <div class="special-options">
+              ${cfg.specialSubstitute.map(item => `
+                <label class="item-card" id="card-${slug(secao)}-${slug(item)}">
+                  <input type="radio" name="substituicao-simples" onchange="selecionarSubstituicao('${item.replace(/'/g,"\\'")}')" ${item === 'Mini pão de queijo' ? 'checked' : ''}>
+                  <img class="item-thumb" src="${getImageForItem(item)}" alt="${item}">
+                  <div><div class="item-name">${item}</div><div class="item-meta">Marque 1 opção</div></div>
+                </label>
+              `).join('')}
+            </div>
+          </div>` : '';
+
+        const itensSalgados = cfg.items.filter(item => getCategoriaVisual(item, secao) === 'salgados');
+        const itensDoces = cfg.items.filter(item => getCategoriaVisual(item, secao) === 'doces');
+        const itensAperitivos = cfg.items.filter(item => getCategoriaVisual(item, secao) === 'aperitivos');
+        const itensBebidas = cfg.items.filter(item => getCategoriaVisual(item, secao) === 'bebidas');
+
+        const renderItens = (lista, secaoNome) => lista.map(item => `
+          <label class="item-card" id="card-${slug(secaoNome)}-${slug(item)}">
+            <input type="checkbox" onchange="toggleItem('${secaoNome.replace(/'/g,"\\'")}', '${item.replace(/'/g,"\\'")}', this)">
+            <img class="item-thumb" src="${getImageForItem(item)}" alt="${item}">
+            <div>
+              <div class="item-name">${item}</div>
+              <div class="item-meta">Clique para marcar este item</div>
+            </div>
+          </label>
+        `).join('');
+
+        return `
+          <section class="section" data-section="${secao}">
+            <div class="section-title">${secao}<span class="section-subtitle">${cfg.observacao}</span></div>
+            <div class="section-body">
+              <img class="board-image ${secao === 'Coquetel' ? 'coquetel-ajustada' : ''}" src="${imagemSecao[secao]}" alt="${secao}">
+              <div class="options">
+                ${secao === 'Coffee-break Simples' ? '' : `
+                  <h3>Selecione os itens</h3>
+                  <p class="note">Cada item recebe um tique dentro da caixa de seleção.</p>
+                `}
+
+                ${substituicaoHtml}
+
+                ${itensSalgados.length ? `
+                  <div class="special-box" style="margin:0 0 18px;">
+                    <h4>${getTituloCategoria(secao, 'salgados')}</h4>
+                    <p class="note" style="margin:0;color:#214e78;">Selecione os itens desta categoria</p>
+                  </div>
+                  <div class="option-list" style="margin-bottom:18px;">
+                    ${renderItens(itensSalgados, secao)}
+                  </div>
+                ` : ''}
+
+                ${itensDoces.length ? `
+                  <div class="special-box" style="margin:0 0 18px;">
+                    <h4>${getTituloCategoria(secao, 'doces')}</h4>
+                    <p class="note" style="margin:0;color:#214e78;">Selecione os itens desta categoria</p>
+                  </div>
+                  <div class="option-list" style="margin-bottom:18px;">
+                    ${renderItens(itensDoces, secao)}
+                  </div>
+                ` : ''}
+
+                ${itensAperitivos.length ? `
+                  <div class="special-box" style="margin:0 0 18px;">
+                    <h4>${getTituloCategoria(secao, 'aperitivos')}</h4>
+                    <p class="note" style="margin:0;color:#214e78;">Selecione os itens desta categoria</p>
+                  </div>
+                  <div class="option-list" style="margin-bottom:18px;">
+                    ${renderItens(itensAperitivos, secao)}
+                  </div>
+                ` : ''}
+
+                ${itensBebidas.length ? `
+                  <div class="special-box" style="margin:0 0 18px;">
+                    <h4>${getTituloCategoria(secao, 'bebidas')}</h4>
+                    <p class="note" style="margin:0;color:#214e78;">Selecione os itens desta categoria</p>
+                  </div>
+                  <div class="option-list">
+                    ${renderItens(itensBebidas, secao)}
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          </section>`;
+      }).join('');
+
+      destacarSubstituicao();
+    }
+
+    function selecionarSubstituicao(item){
+      pedido.substituicaoSimples = item;
+      destacarSubstituicao();
+    }
+
+    function destacarSubstituicao(){
+      ['Mini pão de queijo','Lanche de metro','Pão brioche'].forEach(item => {
+        const card = document.getElementById(`card-${slug('Coffee-break Simples')}-${slug(item)}`);
+        if(card) card.classList.toggle('active', pedido.substituicaoSimples === item);
+      });
+    }
+
+    function toggleItem(secao, item, checkbox){
+      const lista = pedido.itens[secao] || [];
+      const card = document.getElementById(`card-${slug(secao)}-${slug(item)}`);
+      if(checkbox.checked){
+        if(!lista.includes(item)) lista.push(item);
+        card.classList.add('active');
+      } else {
+        pedido.itens[secao] = lista.filter(i => i !== item);
+        card.classList.remove('active');
+      }
+      atualizarRegrasDinamicas();
+    }
+
+    function limparSelecoesVisuais(){
+      document.querySelectorAll('.item-card input[type="checkbox"]').forEach(input => input.checked = false);
+      document.querySelectorAll('.item-card').forEach(card => card.classList.remove('active'));
+      document.getElementById('observacoesEvento').value = '';
+      document.getElementById('resumo').innerHTML = '';
+      document.getElementById('resumo').classList.add('vazio');
+      document.getElementById('validacaoResumo').innerHTML = '';
+      document.getElementById('galleryContent').innerHTML = 'Após gerar o resumo, os cards com imagens dos itens selecionados aparecerão aqui.';
+      document.getElementById('btnEnviarPedido').classList.add('btn-hidden');
+      document.getElementById('btnGerarResumo').classList.remove('btn-hidden');
+      destacarSubstituicao();
+    }
+
+    function resetarPedidoDoTipo(){
+      pedido.louca = [];
+      pedido.copos = [];
+      pedido.substituicaoSimples = 'Mini pão de queijo';
+      pedido.itens = {
+        'Coffee-break Simples': [],
+        'Coffee-break tipo Brunch': [],
+        'Coquetel': [],
+        'Almoço/Jantar Estilo Finger-Food': []
+      };
+      limparSelecoesVisuais();
+    }
+
+    function getLimiteEscolhas(tipo){
+      const evento = document.getElementById('tipoEvento').value;
+      if(tipo === 'louca') return 2;
+      if(tipo === 'copos') return evento === 'Coquetel' ? 3 : 2;
+      return 1;
+    }
+
+    function renderChoices(groupId, opcoes, tipo){
+      const group = document.getElementById(groupId);
+      group.innerHTML = opcoes.map(op => {
+        const ativo = tipo === 'copos'
+          ? pedido.copos.includes(op)
+          : tipo === 'louca'
+            ? pedido.louca.includes(op)
+            : pedido[tipo] === op;
+        return `<div class="choice ${ativo ? 'active' : ''}" onclick="selecionarEscolha('${tipo}','${op.replace(/'/g,"\\'")}',this)">${op}</div>`;
+      }).join('');
+    }
+
+    function selecionarEscolha(tipo, valor, el){
+      if(tipo === 'copos' || tipo === 'louca'){
+        const campo = tipo === 'copos' ? 'copos' : 'louca';
+        const selecionados = pedido[campo];
+        const jaSelecionado = selecionados.includes(valor);
+
+        if(jaSelecionado){
+          pedido[campo] = selecionados.filter(item => item !== valor);
+          el.classList.remove('active');
+          return;
+        }
+
+        const limite = getLimiteEscolhas(tipo);
+        if(selecionados.length >= limite){
+          const nomeCampo = tipo === 'copos' ? 'Copos e xícaras' : 'Tipo de louça';
+          alert(`Em ${nomeCampo} você pode selecionar no máximo ${limite} opções.`);
+          return;
+        }
+
+        pedido[campo].push(valor);
+        el.classList.add('active');
+        return;
+      }
+
+      el.parentElement.querySelectorAll('.choice').forEach(item=>item.classList.remove('active'));
+      el.classList.add('active');
+      pedido[tipo] = valor;
+    }
+
+    function mudarTipoEvento(){
+      const tipo = document.getElementById('tipoEvento').value;
+      resetarPedidoDoTipo();
+      document.querySelectorAll('.section').forEach(sec => sec.classList.toggle('hidden', sec.dataset.section !== tipo));
+      const cfg = configuracoes[tipo];
+      renderChoices('loucaGroup', cfg.loucas, 'louca');
+      renderChoices('coposGroup', cfg.copos, 'copos');
+      atualizarRegrasDinamicas();
+    }
+
+    function contarItens(lista, universo){
+      return lista.filter(item => universo.includes(item)).length;
+    }
+
+    function validarTipo(tipo, pessoas){
+      const itens = pedido.itens[tipo] || [];
+      const avisos = [];
+      const totalPessoas = Number(pessoas) || 0;
+
+      if(tipo === 'Coffee-break Simples'){
+        const bolos = contarItens(itens, categorias.doces.filter(i => i.startsWith('Bolo')));
+        const bebidas = contarItens(itens, categorias.bebidas);
+        const minimoBolos = Math.max(1, Math.ceil(totalPessoas / 10));
+
+        if(!pedido.substituicaoSimples) avisos.push('Escolha a opção principal: Mini pão de queijo, Lanche de metro ou Pão brioche.');
+        if(bolos < minimoBolos) avisos.push(`Faltam ${minimoBolos - bolos} bolo(s) para completar a regra de 1 bolo a cada 10 pessoas.`);
+        if(bebidas < 3) avisos.push(`Faltam ${3 - bebidas} bebida(s) para completar as 3 bebidas obrigatórias.`);
+        if(bebidas > 3) avisos.push('No Coffee-break Simples, selecione exatamente 3 bebidas.');
+      }
+
+      if(tipo === 'Coffee-break tipo Brunch'){
+        const salgados = contarItens(itens, categorias.salgados);
+        const doces = contarItens(itens, categorias.doces);
+        const bebidas = contarItens(itens, categorias.bebidas);
+
+        if(salgados < 4) avisos.push(`Faltam ${4 - salgados} tipo(s) de salgado para completar os 4 obrigatórios.`);
+        if(salgados > 4) avisos.push('Brunch exige exatamente 4 tipos de salgados.');
+
+        if(doces < 3) avisos.push(`Faltam ${3 - doces} tipo(s) de doce para completar os 3 obrigatórios.`);
+        if(doces > 3) avisos.push('Brunch exige exatamente 3 tipos de doces.');
+
+        if(bebidas < 1) avisos.push('Brunch exige pelo menos 1 bebida.');
+        if(bebidas > 4) avisos.push('Brunch permite até 4 tipos de bebidas.');
+      }
+
+      if(tipo === 'Coquetel'){
+        const salgados = contarItens(itens, categorias.salgados);
+        const minilanches = contarItens(itens, categorias.minilanches);
+        const tabua = contarItens(itens, categorias.tabua);
+        const doces = contarItens(itens, categorias.doces);
+        const frutas = contarItens(itens, categorias.frutas);
+
+        if(salgados > 4) avisos.push('Coquetel permite até 4 tipos de salgados.');
+        else if(salgados < 1) avisos.push('Selecione pelo menos 1 tipo de salgado no Coquetel.');
+
+        if(minilanches > 3) avisos.push('Coquetel permite até 3 minilanches.');
+
+        if(tabua > 2) avisos.push('Coquetel permite até 2 itens de aperitivos.');
+        else if(tabua < 1) avisos.push('Selecione pelo menos 1 item em aperitivos.');
+
+        if(doces > 3) avisos.push('Coquetel permite até 3 tipos de doces.');
+        else if(doces < 1 && frutas < 1) avisos.push('Selecione pelo menos 1 doce ou fruta no Coquetel.');
+
+        if(frutas > 1) avisos.push('Coquetel permite no máximo 1 fruta.');
+        if(frutas > 0 && doces > 2) avisos.push('Se houver fruta no Coquetel, use no máximo 2 doces e 1 fruta.');
+      }
+
+      if(tipo === 'Almoço/Jantar Estilo Finger-Food'){
+        const pratosQuentes = contarItens(itens, categorias.pratosQuentes);
+        const saladas = contarItens(itens, categorias.saladas);
+        const carnes = contarItens(itens, categorias.carnes);
+        const salgados = contarItens(itens, ['Coxinha/Risoles/Bolinha queijo']);
+        const doces = contarItens(itens, categorias.doces);
+        const frutas = contarItens(itens, categorias.frutas);
+        const bebidas = contarItens(itens, categorias.bebidas);
+
+        if(pratosQuentes > 2) avisos.push('Finger-Food permite até 2 tipos de pratos quentes.');
+        else if(pratosQuentes < 1) avisos.push('Selecione pelo menos 1 prato quente.');
+
+        if(saladas > 1) avisos.push('Finger-Food permite 1 tipo de salada.');
+        if(carnes > 2) avisos.push('Finger-Food permite até 2 tipos de carnes.');
+        if(salgados > 1) avisos.push('Finger-Food permite 1 tipo de salgado.');
+        if(doces > 2) avisos.push('Finger-Food permite até 2 tipos de doces.');
+        if(frutas > 1) avisos.push('Finger-Food permite no máximo 1 fruta.');
+        if(frutas > 0 && doces > 1) avisos.push('Se houver fruta no Finger-Food, use no máximo 1 doce e 1 fruta.');
+        if(bebidas > 3) avisos.push('Finger-Food permite até 3 tipos de bebidas.');
+        if(!itens.includes('Café amargo')) avisos.push('Finger-Food deve incluir Café amargo.');
+      }
+
+      if(!pedido.louca.length) avisos.push('Selecione pelo menos 1 tipo de louça.');
+      if(!pedido.copos.length) avisos.push('Selecione pelo menos 1 opção de copos/xícaras.');
+
+      return avisos;
+    }
+
+    function atualizarRegrasDinamicas(){
+      const tipo = document.getElementById('tipoEvento').value;
+      const pessoas = Number(document.getElementById('pessoas').value || 0);
+      const base = configuracoes[tipo];
+      const extra = tipo === 'Coffee-break Simples'
+        ? `<li>Para ${pessoas || 0} pessoas, o mínimo atual é de <strong>${Math.max(1, Math.ceil((pessoas || 0) / 10))}</strong> bolo(s), considerando 1 bolo a cada 10 pessoas.</li>`
+        : '';
+
+      document.getElementById('regrasDinamicas').innerHTML = `
+        <ul class="rule-list">
+          <li><strong>${tipo}:</strong> ${base.observacao}</li>
+          <li><strong>Louça permitida:</strong> ${base.loucas.join(', ')} (selecione até 2 tipos)</li>
+          <li><strong>Copos/Xícaras permitidos:</strong> ${base.copos.join(', ')}${tipo === 'Coquetel' ? ' (selecione até 3 opções)' : ' (selecione até 2 opções)'}</li>
+          ${extra}
+        </ul>`;
+    }
+
+    function montarTextoPedido(){
+      const tipoEvento = document.getElementById('tipoEvento').value;
+      const responsavelEvento = document.getElementById('responsavelEvento').value.trim() || 'Não informado';
+      const pessoas = document.getElementById('pessoas').value || '-';
+      const observacoesEvento = document.getElementById('observacoesEvento').value.trim() || 'Nenhuma observação informada.';
+      const itens = [...(pedido.itens[tipoEvento] || [])];
+
+      if(tipoEvento === 'Coffee-break Simples' && pedido.substituicaoSimples){
+        itens.unshift(pedido.substituicaoSimples);
+      }
+
+      return [
+        'Novo pedido de coffee break',
+        '',
+        `Tipo de coffee: ${tipoEvento}`,
+        `Responsável pelo evento: ${responsavelEvento}`,
+        `Quantidade de pessoas: ${pessoas}`,
+        `Louça: ${pedido.louca.length ? pedido.louca.join(', ') : 'Não selecionada'}`,
+        `Copos/Xícaras: ${pedido.copos.length ? pedido.copos.join(', ') : 'Não selecionado'}`,
+        tipoEvento === 'Coffee-break Simples' ? `Opção principal: ${pedido.substituicaoSimples}` : null,
+        `Observações do evento: ${observacoesEvento}`,
+        '',
+        'Itens selecionados:',
+        itens.length ? itens.join(', ') : 'Nenhum item foi selecionado.'
+      ].filter(Boolean).join('\n');
+    }
+
+    async function carregarImagemBase64(url){
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+
+        img.onload = function(){
+          try{
+            const canvas = document.createElement('canvas');
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            resolve(canvas.toDataURL('image/jpeg', 0.85));
+          }catch(e){
+            resolve(null);
+          }
+        };
+
+        img.onerror = function(){
+          resolve(null);
+        };
+
+        img.src = url;
+      });
+    }
+
+    async function enviarPedido(){
+      const tipoEvento = document.getElementById('tipoEvento').value;
+      const pessoas = document.getElementById('pessoas').value || '-';
+      const avisos = validarTipo(tipoEvento, pessoas);
+
+      if(avisos.length){
+        alert('Revise a configuração antes de enviar o pedido.');
+        return;
+      }
+
+      try{
+        await gerarPDFPedido();
+      }catch(erro){
+        console.error('Erro ao gerar PDF:', erro);
+        alert('Não foi possível gerar o PDF automaticamente. O e-mail será aberto mesmo assim.');
+      }
+
+      const assunto = encodeURIComponent(`Pedido de ${tipoEvento} - ${document.getElementById('responsavelEvento').value.trim() || 'Sem responsável informado'}`);
+      const corpo = encodeURIComponent(montarTextoPedido() + '\n\nSelecione os itens, a louça e os copos.\n\nPDF do pedido gerado automaticamente no navegador.');
+
+      setTimeout(() => {
+        window.location.href = `mailto:loreservicos@gmail.com?subject=${assunto}&body=${corpo}`;
+      }, 600);
+    }
+
+    async function gerarPDFPedido(){
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+
+      const tipoEvento = document.getElementById('tipoEvento').value;
+      const responsavelEvento = document.getElementById('responsavelEvento').value.trim() || 'Não informado';
+      const pessoas = document.getElementById('pessoas').value || '-';
+      const observacoesEvento = document.getElementById('observacoesEvento').value.trim() || 'Nenhuma observação informada.';
+      const regrasTexto = document.getElementById('regrasDinamicas').innerText || '';
+
+      let itens = [...(pedido.itens[tipoEvento] || [])];
+      if(tipoEvento === 'Coffee-break Simples' && pedido.substituicaoSimples){
+        itens.unshift(pedido.substituicaoSimples);
+      }
+
+      const itensUnicos = [...new Set(itens.map(item => item.trim()))];
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(16);
+      doc.text('Lore Serviços', 15, 18);
+
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, 15, 24);
+
+      doc.setDrawColor(64, 169, 235);
+      doc.line(15, 27, 195, 27);
+
+      let y = 35;
+
+      const blocoInfo = [
+        'Selecione os itens, a louça e os copos.',
+        '',
+        `Tipo de coffee: ${tipoEvento}`,
+        `Responsável pelo evento: ${responsavelEvento}`,
+        `Quantidade de pessoas: ${pessoas}`,
+        `Louça: ${pedido.louca.length ? pedido.louca.join(', ') : 'Não selecionada'}`,
+        `Copos/Xícaras: ${pedido.copos.length ? pedido.copos.join(', ') : 'Não selecionado'}`,
+        tipoEvento === 'Coffee-break Simples' ? `Opção principal: ${pedido.substituicaoSimples}` : null,
+        `Observações do evento: ${observacoesEvento}`
+      ].filter(Boolean);
+
+      doc.setFontSize(11);
+      const textoInfo = doc.splitTextToSize(blocoInfo.join('\n'), 180);
+      doc.text(textoInfo, 15, y);
+      y += (textoInfo.length * 6) + 6;
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Itens selecionados:', 15, y);
+      y += 8;
+
+      const cardW = 40;
+      const cardH = 32;
+      const imgW = 30;
+      const imgH = 18;
+      const gapX = 5;
+      const gapY = 8;
+      const startX = 15;
+      const maxCols = 4;
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+
+      let baseGridY = y;
+      let currentPageStartY = y;
+
+      for(let i = 0; i < itensUnicos.length; i++){
+        let col = i % maxCols;
+        let row = Math.floor(i / maxCols);
+
+        let x = startX + (col * (cardW + gapX));
+        let currentY = currentPageStartY + (row * (cardH + gapY));
+
+        if(currentY + cardH > 280){
+          doc.addPage();
+          currentPageStartY = 20;
+          baseGridY = 20;
+
+          const pageIndex = Math.floor(i / (maxCols * 6));
+          const indexNaPagina = i - (pageIndex * maxCols * 6);
+          col = indexNaPagina % maxCols;
+          row = Math.floor(indexNaPagina / maxCols);
+
+          x = startX + (col * (cardW + gapX));
+          currentY = currentPageStartY + (row * (cardH + gapY));
+        }
+
+        doc.setDrawColor(220, 220, 220);
+        doc.roundedRect(x, currentY, cardW, cardH, 3, 3);
+
+        const item = itensUnicos[i];
+        const imgUrl = getImageForItem(item);
+        const base64 = await carregarImagemBase64(imgUrl);
+
+        if(base64){
+          try{
+            doc.addImage(base64, 'JPEG', x + 5, currentY + 3, imgW, imgH);
+          }catch(e){
+            doc.setFontSize(7);
+            doc.text('Imagem indisponível', x + 5, currentY + 12);
+            doc.setFontSize(8);
+          }
+        }else{
+          doc.setFontSize(7);
+          doc.text('Imagem indisponível', x + 5, currentY + 12);
+          doc.setFontSize(8);
+        }
+
+        const nomeLinhas = doc.splitTextToSize(item, cardW - 6);
+        doc.text(nomeLinhas.slice(0, 2), x + 3, currentY + 25);
+      }
+
+      let fimGridY = currentPageStartY + (Math.ceil(Math.min(itensUnicos.length, maxCols * 6)) * (cardH + gapY)) + 4;
+      if(itensUnicos.length > maxCols * 6){
+        fimGridY = 20 + (Math.ceil((itensUnicos.length - (Math.floor((itensUnicos.length - 1) / (maxCols * 6)) * (maxCols * 6))) / maxCols) * (cardH + gapY)) + 4;
+      }
+
+      if(fimGridY > 250){
+        doc.addPage();
+        fimGridY = 20;
+      }
+
+      if(regrasTexto){
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(11);
+        doc.text('Regras do cardápio:', 15, fimGridY);
+        fimGridY += 6;
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        const regrasLinhas = doc.splitTextToSize(regrasTexto, 180);
+        doc.text(regrasLinhas, 15, fimGridY);
+      }
+
+      const nomeArquivo = `pedido-${slug(tipoEvento)}-${slug(responsavelEvento || 'sem-responsavel')}.pdf`;
+      doc.save(nomeArquivo);
+    }
+
+    function gerarResumo(){
+      const tipoEvento = document.getElementById('tipoEvento').value;
+      const responsavelEvento = document.getElementById('responsavelEvento').value.trim() || 'Não informado';
+      const pessoas = document.getElementById('pessoas').value || '-';
+      const observacoesEvento = document.getElementById('observacoesEvento').value.trim() || 'Nenhuma observação informada.';
+      const itens = [...(pedido.itens[tipoEvento] || [])];
+
+      if(tipoEvento === 'Coffee-break Simples' && pedido.substituicaoSimples){
+        itens.unshift(pedido.substituicaoSimples);
+      }
+
+      const avisos = validarTipo(tipoEvento, pessoas);
+
+      const resumoEl = document.getElementById('resumo');
+      resumoEl.classList.remove('vazio');
+      resumoEl.innerHTML = `
+        <strong>Tipo de coffee:</strong> ${tipoEvento}<br>
+        <strong>Responsável pelo evento:</strong> ${responsavelEvento}<br>
+        <strong>Quantidade de pessoas:</strong> ${pessoas}<br>
+        <strong>Louça:</strong> ${pedido.louca.length ? pedido.louca.join(', ') : 'Não selecionada'}<br>
+        <strong>Copos/Xícaras:</strong> ${pedido.copos.length ? pedido.copos.join(', ') : 'Não selecionado'}<br>
+        ${tipoEvento === 'Coffee-break Simples' ? `<strong>Opção principal:</strong> ${pedido.substituicaoSimples}<br>` : ''}
+        <strong>Observações do evento:</strong> ${observacoesEvento}<br><br>
+        <strong>Itens selecionados:</strong><br>${itens.length ? itens.join(', ') : 'Nenhum item foi selecionado ainda.'}
+      `;
+
+      document.getElementById('validacaoResumo').innerHTML = avisos.length
+        ? `<div class="alert"><strong>Ajustes necessários:</strong><br>${avisos.join('<br>')}</div>`
+        : `<div class="ok"><strong>Configuração válida.</strong> O cardápio respeita as regras principais desse tipo de serviço.</div>`;
+
+      const btnEnviarPedido = document.getElementById('btnEnviarPedido');
+      const btnGerarResumo = document.getElementById('btnGerarResumo');
+      const configuracaoValida = avisos.length === 0;
+
+      btnEnviarPedido.classList.toggle('btn-hidden', !configuracaoValida);
+      btnGerarResumo.classList.toggle('btn-hidden', configuracaoValida);
+
+      const gallery = document.getElementById('galleryContent');
+      if(!itens.length){
+        gallery.innerHTML = '<div class="muted">Nenhum item selecionado para mostrar nos cards.</div>';
+        return;
+      }
+
+      const itensUnicos = [...new Set(itens.map(item => item.trim()))];
+
+      gallery.innerHTML = `<div class="gallery-grid">${itensUnicos.map(item => `
+        <div class="gallery-card">
+          <img src="${getImageForItem(item)}" alt="${item}" onerror="this.src='${IMAGEM_PADRAO}'">
+          <div>${item}</div>
+        </div>
+      `).join('')}</div>`;
+    }
+
+    montarSecoes();
+    mudarTipoEvento();
+  </script>
+</body>
+</html>
